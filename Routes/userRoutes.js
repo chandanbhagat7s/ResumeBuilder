@@ -1,10 +1,12 @@
-const express = require("express")
+const express = require("express");
+const { signUp, login } = require("../Controller/authController");
 const Router = express.Router()
 
 
-Router.use('/login')
-Router.use('/signup')
-Router.use('/resume').get().post().delete().patch()
+Router.post('/signup', signUp)
+Router.post('/login', login)
+// Router.use('/signup')
+// Router.use('/resume').get().post().delete().patch()
 
 
 
