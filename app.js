@@ -4,7 +4,8 @@ const express = require("express")
 const env = require("dotenv")
 const { default: mongoose } = require("mongoose")
 const globalerrorHandler = require("./utils/globalerrorHandler")
-const Router = require("./Routes/userRoutes")
+const userRouter = require("./Routes/userRoutes")
+const resumeRouter = require("./Routes/resumeRoutes")
 const morgan = require("morgan")
 const cookieParser = require("cookie-parser")
 const app = express()
@@ -27,12 +28,16 @@ mongoose.connect(process.env.DATABASE, {
         console.log("not connected");
     })
 
+
+app.use(express.static(`${__dirname}/Public`))
+
 // to get all everything 
 app.use(express.json())
 app.use(morgan("dev"))
 app.use(cookieParser())
 
-app.use('/api/v1/user', Router)
+app.use('/api/v1/user', userRouter)
+app.use('/api/v1/resume', resumeRouter)
 
 
 
