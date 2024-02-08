@@ -4,7 +4,7 @@ const express = require('express');
 const resumeSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: [true, "name should be provided"],
+        // required: [true, "name should be provided"],
         maxLength: 20,
         minLenght: 5
     },

@@ -9,14 +9,14 @@ var pdf = require("pdf-creator-node");
 var fs = require("fs");
 
 
-const generatePdf = () => {
+const generatePdf = (user) => {
 
 
 
-    // Read HTML Template
-    // var html = fs.readFileSync("/templates/template.html", "utf8");
+  // Read HTML Template
+  // var html = fs.readFileSync("/templates/template.html", "utf8");
 
-    let html = `<!DOCTYPE html>
+  let html = `<!DOCTYPE html>
     <html>
       <head>
         <meta charset="utf-8" />
@@ -27,14 +27,15 @@ const generatePdf = () => {
         <ul>
           {{#each users}}
           <li>Name: {{this.name}}</li>
-          <li>Age: {{this.age}}</li>
+          <li>Age: {{this.address}}</li>
           <br />
           {{/each}}
         </ul>
       </body>
     </html>`
 
-    html = `<!DOCTYPE html>
+  // let hhtml = `<!DOCTYPE html>
+  html = `<!DOCTYPE html>
     <html lang="en">
     <head>
       <meta charset="UTF-8">
@@ -76,20 +77,24 @@ const generatePdf = () => {
       </style>
     </head>
     <body>
+    <ul>
+          {{#each users}}
+         
     
       <div class="container">
         <div class="info">
-          <h1>John Doe</h1>
+          <h1> {{this.name}}</h1>
           <p>Web Developer</p>
-          <p>Email: john.doe@example.com</p>
-          <p>Phone: (123) 456-7890</p>
+          <p>Email: {{this.email}}</p>
+          <p>Phone: {{this.mobile}}</p>
         </div>
+        <hr>
     
         <div class="section">
           <h2>Education</h2>
           <p>Bachelor of Science in Computer Science, XYZ University, 2015-2019</p>
         </div>
-    
+    <hr>
         <div class="section">
           <h2>Experience</h2>
           <p>Web Developer, ABC Company, 2019-Present</p>
@@ -99,6 +104,7 @@ const generatePdf = () => {
             <li>Optimized website performance and conducted A/B testing for user experience improvements.</li>
           </ul>
         </div>
+        <hr>
     
         <div class="section skills">
           <h2>Skills</h2>
@@ -111,6 +117,7 @@ const generatePdf = () => {
             <li>SQL</li>
           </ul>
         </div>
+        {{/each}}
       </div>
     
     </body>
@@ -118,57 +125,52 @@ const generatePdf = () => {
     `
 
 
-    var options = {
-        format: "A3",
-        orientation: "portrait",
-        border: "10mm",
-        header: {
-            height: "45mm",
-            contents: '<div style="text-align: center;">Author: Shyam Hajare</div>'
-        },
-        footer: {
-            height: "28mm",
-            contents: {
-                first: 'Cover page',
-                2: 'Second page', // Any page number is working. 1-based index
-                default: '<span style="color: #444;">{{page}}</span>/<span>{{pages}}</span>', // fallback value
-                last: 'Last Page'
-            }
-        }
-    };
-
-    var users = [
-        {
-            name: "Shyam",
-            age: "26",
-        },
-        {
-            name: "Navjot",
-            age: "26",
-        },
-        {
-            name: "Vitthal",
-            age: "26",
-        },
-    ];
-    var document = {
-        html: html,
-        data: {
-            users: users,
-        },
-        path: "./output.pdf",
-        type: "",
-    };
+  var options = {
+    format: "A3",
+    orientation: "portrait",
+    border: "10mm",
+    header: {
+      height: "45mm",
+      contents: '<div style="text-align: center; font-size:2rem;font-weight:800;">RESUME</div>'
+    },
+    footer: {
+      height: "28mm",
+      contents: {
+        first: 'Cover page',
+        2: 'Second page', // Any page number is working. 1-based index
+        default: '<span style="color: #444;">{{page}}</span>/<span>{{pages}}</span>', // fallback value
+        last: 'Last Page'
+      }
+    }
+  };
+  console.log("the user is ", user);
+  var users = [
+    // user
+    {
+      name: user.name,
+      address: user.address,
+      email: user.email,
+      mobile: user.mobile
+    }
+  ];
+  var document = {
+    html: html,
+    data: {
+      users: users,
+    },
+    path: "./output.pdf",
+    type: "",
+  };
 
 
-    pdf
-        .create(document, options)
-        .then((res) => {
-            console.log(res);
-        })
-        .catch((error) => {
-            console.error(error);
-        });
+  pdf
+    .create(document, options)
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 };
 
 
@@ -184,50 +186,51 @@ const generatePdf = () => {
 
 
 exports.createResume = runAsync(async (req, res, next) => {
-    const {
-        name,
-        address,
-        About,
-        mobile,
-        email,
-        experience,
-        DOB,
-        skills,
-        fresher,
-        hobbies,
-        workedAs,
-        languages,
-    } = req.body
+  const {
+    name,
+    address,
 
-    if (!name || !address || !email || !mobile || !skills || !About) {
-        return next(new appError("please enter all the details ", 400))
-    }
+    About,
+    mobile,
+    email,
+    experience,
+    DOB,
+    skills,
+    fresher,
+    hobbies,
+    workedAs,
+    languages,
+  } = req.body
+
+  if (!address || !email || !mobile || !skills || !About) {
+    return next(new appError("please enter all the details ", 400))
+  }
 
 
-    const resume = await Resume.create({
-        name,
-        address,
-        About,
-        mobile,
-        email,
-        experience,
-        DOB,
-        skills,
-        fresher,
-        hobbies,
-        workedAs,
-        languages,
-    })
+  const resume = await Resume.create({
+    name,
+    address,
+    About,
+    mobile,
+    email,
+    experience,
+    DOB,
+    skills,
+    fresher,
+    hobbies,
+    workedAs,
+    languages,
+  })
 
-    if (!resume) {
-        return next(new appError("resume not created ", 400))
-    }
-    generatePdf()
+  if (!resume) {
+    return next(new appError("resume not created ", 400))
+  }
+  resume && generatePdf(resume)
 
-    res.status(200).send({
-        status: true,
-        data: resume
-    })
+  res.status(200).send({
+    status: true,
+    data: resume
+  })
 
 
 
