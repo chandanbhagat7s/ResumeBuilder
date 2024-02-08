@@ -14,7 +14,8 @@ const generatePdf = (user) => {
 
 
   // Read HTML Template
-  // var html = fs.readFileSync("/templates/template.html", "utf8");
+  // var html = fs.readFileSync('./templates/template.html', 'utf-8')
+  // console.log(html);
 
   let html = `<!DOCTYPE html>
     <html>
