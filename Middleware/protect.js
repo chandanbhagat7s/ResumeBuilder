@@ -1,9 +1,10 @@
+const jwt = require("jsonwebtoken");
 
 exports.isLogedIn = async (req, res, next) => {
 
     // we need to see weather the user is loged in or not
 
-    if (req.cookies.jwt) {
+    if (req.cookies?.jwt) {
         try {
             if (req.cookies.jwt == 'logout') {
                 return next();

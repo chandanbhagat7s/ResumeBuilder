@@ -13,6 +13,18 @@ exports.home = runAsync(async (req, res, next) => {
     })
 })
 
+exports.landingPage = runAsync(async (req, res, next) => {
+    // request for all the tour 
+    // const tours = await Tour.find()
+    // create template 
+    // render the data on site
+
+    res.status(200).render('landing', {
+        title: 'welcome ',
+        //  tours
+    })
+})
+
 exports.login = runAsync(async (req, res, next) => {
     // request for all the tour 
     // const tours = await Tour.find()

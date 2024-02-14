@@ -1,4 +1,5 @@
 const express = require("express")
+const fs = require('fs');
 
 
 const env = require("dotenv")
@@ -38,6 +39,8 @@ app.use(express.static(`${__dirname}/Public`))
 app.use(express.json())
 app.use(morgan("dev"))
 app.use(cookieParser())
+
+
 
 app.use('/', viewRouter)
 app.use('/api/v1/user', userRouter)
