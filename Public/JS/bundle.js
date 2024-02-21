@@ -11980,7 +11980,7 @@ var showAlert = exports.showAlert = function showAlert(type, msg) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.signup = exports.login = void 0;
+exports.signup = exports.login = exports.addDetails = void 0;
 var _axios = _interopRequireDefault(require("axios"));
 var _alerts = require("./alerts");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -12026,20 +12026,56 @@ var login = exports.login = /*#__PURE__*/function () {
     return _ref.apply(this, arguments);
   };
 }();
-var signup = exports.signup = /*#__PURE__*/function () {
-  var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(name, email, password, mobile, cnfPassword) {
+var addDetails = exports.addDetails = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(data) {
     var res;
     return _regeneratorRuntime().wrap(function _callee2$(_context2) {
       while (1) switch (_context2.prev = _context2.next) {
         case 0:
           _context2.prev = 0;
+          console.log("came");
+          _context2.next = 4;
+          return _axios.default.post('http://127.0.0.1:3001/api/v1/user/addDetails', data);
+        case 4:
+          res = _context2.sent;
+          console.log(res);
+          if (res.data.status) {
+            (0, _alerts.showAlert)('success', "Data is Saved  !");
+            window.setTimeout(function () {
+              location.assign('/');
+            }, 1500);
+          }
+          _context2.next = 13;
+          break;
+        case 9:
+          _context2.prev = 9;
+          _context2.t0 = _context2["catch"](0);
+          console.log(_context2.t0);
+          (0, _alerts.showAlert)('danger', _context2.t0.response.data.msg);
+        case 13:
+        case "end":
+          return _context2.stop();
+      }
+    }, _callee2, null, [[0, 9]]);
+  }));
+  return function addDetails(_x3) {
+    return _ref2.apply(this, arguments);
+  };
+}();
+var signup = exports.signup = /*#__PURE__*/function () {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(name, email, password, mobile, cnfPassword) {
+    var res;
+    return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+      while (1) switch (_context3.prev = _context3.next) {
+        case 0:
+          _context3.prev = 0;
           if (!(password != cnfPassword)) {
-            _context2.next = 3;
+            _context3.next = 3;
             break;
           }
-          return _context2.abrupt("return", (0, _alerts.showAlert)('danger', "please check password and cnfPassword!"));
+          return _context3.abrupt("return", (0, _alerts.showAlert)('danger', "please check password and cnfPassword!"));
         case 3:
-          _context2.next = 5;
+          _context3.next = 5;
           return _axios.default.post('http://127.0.0.1:3001/api/v1/user/signup', {
             name: name,
             email: email,
@@ -12047,7 +12083,7 @@ var signup = exports.signup = /*#__PURE__*/function () {
             mobile: mobile
           });
         case 5:
-          res = _context2.sent;
+          res = _context3.sent;
           console.log(res);
           if (res.data.status) {
             (0, _alerts.showAlert)("success", "you are succesfully logged in !");
@@ -12055,21 +12091,21 @@ var signup = exports.signup = /*#__PURE__*/function () {
               location.assign('/');
             }, 1500);
           }
-          _context2.next = 14;
+          _context3.next = 14;
           break;
         case 10:
-          _context2.prev = 10;
-          _context2.t0 = _context2["catch"](0);
-          console.log(_context2.t0);
-          (0, _alerts.showAlert)('danger', _context2.t0.response.data.msg);
+          _context3.prev = 10;
+          _context3.t0 = _context3["catch"](0);
+          console.log(_context3.t0);
+          (0, _alerts.showAlert)('danger', _context3.t0.response.data.msg);
         case 14:
         case "end":
-          return _context2.stop();
+          return _context3.stop();
       }
-    }, _callee2, null, [[0, 10]]);
+    }, _callee3, null, [[0, 10]]);
   }));
-  return function signup(_x3, _x4, _x5, _x6, _x7) {
-    return _ref2.apply(this, arguments);
+  return function signup(_x4, _x5, _x6, _x7, _x8) {
+    return _ref3.apply(this, arguments);
   };
 }();
 },{"axios":"../../node_modules/axios/index.js","./alerts":"alerts.js"}],"index.js":[function(require,module,exports) {
@@ -12206,8 +12242,62 @@ require("core-js/modules/web.immediate.js");
 require("core-js/modules/web.dom.iterable.js");
 require("regenerator-runtime/runtime.js");
 var _functions = require("./functions");
+var addExp = document.getElementById("addExp");
+var expBox = document.getElementById("expBox");
 var logins = document.querySelector('.login');
 var signIn = document.querySelector('.signupPage');
+var resumeForm = document.querySelector('#resumeForm');
+if (addExp) {
+  addExp.addEventListener("click", function (e) {
+    e.preventDefault();
+    expBox.insertAdjacentHTML("beforeend", " <br>\n        <div id=\"expBox\">\n        Category\n        <input class=\"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50\" id=\"category1\" placeholder=\"Field : Computer , Mechanical , Civil ..etc\"  />\n        Years you Worked\n        <input class=\"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50\" id=\"exp1\" placeholder=\"Year : 1,2  or months : 0.5,0.6\"  />\n        From To (year)\n        <input class=\"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50\" id=\"fromto1\" placeholder=\"2021-2022\"  />\n        Position\n        <input class=\"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50\" id=\"position1\" placeholder=\"Web developer, android dev..\"  />\n        </div>");
+  });
+}
+if (resumeForm) {
+  resumeForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var obj = {};
+    Array.from(e.target).map(function (el) {
+      if (el.id) {
+        obj[el.id] = el.value;
+      }
+    });
+    obj.experience = {
+      first: {
+        category: obj.category || '',
+        fromto: obj.fromto || '',
+        exp: obj.exp || '',
+        position: obj.position || ''
+      },
+      second: {
+        category: obj.category1 || '',
+        fromto: obj.fromto1 || '',
+        exp: obj.exp1 || '',
+        position: obj.position1 || ''
+      }
+    };
+    obj.education = {
+      class10: {
+        schoolName: obj.class10,
+        board: obj.board10,
+        passingYear: obj.passing10
+      },
+      class12: {
+        collegeName: obj.class12,
+        board: obj.board12,
+        passingYear: obj.passing12
+      },
+      degree: {
+        collegeName: obj.collegeName,
+        universityName: obj.universityName,
+        passingYear: obj.yearOfPassingCollege
+      }
+    };
+    obj.skills = obj.skills.split(',');
+    console.log(obj);
+    (0, _functions.addDetails)(obj);
+  });
+}
 if (logins) {
   logins.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -12258,7 +12348,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59658" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64244" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

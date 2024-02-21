@@ -4,6 +4,34 @@ const runAsync = require("../utils/catchAsync");
 const fs = require('fs');
 
 
+
+exports.addDetailse = runAsync(async (req, res, next) => {
+    const { address, experience, education, skills } = req.body
+    const newData = await User.findByIdAndUpdate('65d5a01affc017e22a9fa7f9', { address, experience, education, skills }, {
+        new: true,
+        runValidators: true,
+
+    })
+    if (!newData) {
+        return next(new appError("failed to update extra details ", 500));
+
+    }
+    newData.data = true;
+    await newData.save()
+
+
+    res.status(200).send({
+        status: "success",
+        data: newData
+    })
+
+
+
+
+
+
+})
+
 exports.getAllResume = runAsync(async (req, res, next) => {
     let templates;
     // if (!req.user) {

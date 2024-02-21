@@ -32,6 +32,29 @@ export const login = async (email, password) => {
 };
 
 
+export const addDetails = async (data) => {
+
+    try {
+        console.log("came");
+
+        const res = await axios.post('http://127.0.0.1:3001/api/v1/user/addDetails', data)
+        console.log(res);
+        if (res.data.status) {
+
+            showAlert('success', "Data is Saved  !")
+            window.setTimeout(() => {
+                location.assign('/');
+            }, 1500)
+        }
+
+
+    } catch (err) {
+        console.log(err);
+        showAlert('danger', err.response.data.msg)
+    }
+};
+
+
 
 
 

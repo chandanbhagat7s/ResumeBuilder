@@ -5,6 +5,7 @@ const Router = express.Router()
 
 
 Router.post("/", createResume)
+
 Router.get('/getAllResume', getAllResume)
 
 

@@ -87,20 +87,15 @@ const generatePdf = (user) => {
 
 exports.createResume = runAsync(async (req, res, next) => {
   const {
-    name,
-    address,
-
     About,
-    mobile,
-    email,
-    experience,
     DOB,
-    skills,
-    fresher,
     hobbies,
-    workedAs,
     languages,
   } = req.body
+  if (!req.userE) {
+
+    return next(new appError("please login for this functionality", 400))
+  }
 
   if (!address || !email || !mobile || !skills || !About) {
     return next(new appError("please enter all the details ", 400))
@@ -108,17 +103,16 @@ exports.createResume = runAsync(async (req, res, next) => {
 
 
   const resume = await Resume.create({
-    name,
-    address,
+    userName: req.userE.userName,
+    address: req.userE.address,
     About,
-    mobile,
-    email,
-    experience,
+    mobile: req.userE.mobile,
+    email: req.userE.email,
+    experience: req.userE.experience,
     DOB,
-    skills,
+    skills: req.userE.skills,
     fresher,
     hobbies,
-    workedAs,
     languages,
   })
 

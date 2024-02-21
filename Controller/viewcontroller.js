@@ -36,6 +36,19 @@ exports.login = runAsync(async (req, res, next) => {
         //  tours
     })
 })
+
+
+exports.resumeCompletionForm = runAsync(async (req, res, next) => {
+    // request for all the tour 
+    // const tours = await Tour.find()
+    // create template 
+    // render the data on site
+
+    res.status(200).render('resumeForm', {
+        title: 'Login',
+        //  tours
+    })
+})
 exports.signup = runAsync(async (req, res, next) => {
     // request for all the tour 
     // const tours = await Tour.find()

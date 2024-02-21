@@ -37,9 +37,12 @@ const createTokenSendRes = (id, res, statusCode, data) => {
 
 exports.signUp = runAsync(async (req, res, next) => {
     console.log(req.body);
-    const { name, email, password, mobile } = req.body;
-    const newUser = await User.create({ name, email, password, mobile });
+    const { userName, email, password, mobile } = req.body;
+    const newUser = await User.create({ userName, email, password, mobile });
+    if (!newUser) {
+        return next(new appError("something went wrrong  ", 500));
 
+    }
     console.log(newUser);
     newUser.password = undefined;
     createTokenSendRes(newUser._id, res, 201, newUser)
@@ -63,6 +66,8 @@ exports.login = runAsync(async (req, res, next) => {
     createTokenSendRes(user.id, res, 200, user)
 
 })
+
+
 
 
 
