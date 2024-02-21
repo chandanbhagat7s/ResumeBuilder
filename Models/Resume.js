@@ -60,9 +60,7 @@ const resumeSchema = new mongoose.Schema({
         required: true
     },
 
-    fresher: {
-        type: Boolean
-    },
+
     hobbies: {
         type: [String]
     },

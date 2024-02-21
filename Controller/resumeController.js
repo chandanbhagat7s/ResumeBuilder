@@ -91,10 +91,17 @@ exports.createResume = runAsync(async (req, res, next) => {
     DOB,
     hobbies,
     languages,
+    urls,
+
   } = req.body
   if (!req.userE) {
 
     return next(new appError("please login for this functionality", 400))
+  }
+
+  if (!req.userE.data) {
+
+    return next(new appError("please complete the details page first", 400))
   }
 
   if (!address || !email || !mobile || !skills || !About) {
@@ -114,6 +121,8 @@ exports.createResume = runAsync(async (req, res, next) => {
     fresher,
     hobbies,
     languages,
+    urls,
+
   })
 
   if (!resume) {

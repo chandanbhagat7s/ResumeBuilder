@@ -69,12 +69,13 @@ export const signup = async (name, email, password, mobile, cnfPassword) => {
         //         password
         //     }
         // });
+        console.log();
 
         if (password != cnfPassword) {
             return showAlert('danger', "please check password and cnfPassword!")
         }
 
-        const res = await axios.post('http://127.0.0.1:3001/api/v1/user/signup', { name, email, password, mobile })
+        const res = await axios.post('http://127.0.0.1:3001/api/v1/user/signup', { userName: name, email, password, mobile })
         console.log(res);
         if (res.data.status) {
             showAlert("success", "you are succesfully logged in !")
