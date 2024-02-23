@@ -7,7 +7,12 @@ const fs = require('fs');
 
 exports.addDetailse = runAsync(async (req, res, next) => {
     const { address, experience, education, skills } = req.body
-    const newData = await User.findByIdAndUpdate('65d5a01affc017e22a9fa7f9', { address, experience, education, skills }, {
+    console.log(req.user);
+    if (!req.user) {
+        return next(new appError("please Login for functionality ", 500));
+
+    }
+    const newData = await User.findByIdAndUpdate(req.user._id, { address, experience, education, skills }, {
         new: true,
         runValidators: true,
 

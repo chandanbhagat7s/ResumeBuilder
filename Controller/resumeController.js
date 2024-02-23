@@ -23,7 +23,7 @@ const generatePdf = (user) => {
   let templates = JSON.parse(data)
 
   // console.log(templates[0].data);
-  html = templates[0].data;
+  html = templates[1].data;
 
   var options = {
     format: "Letter",
@@ -87,41 +87,45 @@ const generatePdf = (user) => {
 
 exports.createResume = runAsync(async (req, res, next) => {
   const {
-    About,
-    DOB,
+    about,
     hobbies,
-    languages,
+    skills,
     urls,
 
   } = req.body
-  if (!req.userE) {
+  if (!about
+
+    , !hobbies
+  ) {
+
+    return next(new appError("please provide this information to add something more to resume ", 400))
+  }
+  if (!req.user) {
 
     return next(new appError("please login for this functionality", 400))
   }
 
-  if (!req.userE.data) {
+  if (!req.user.data) {
 
-    return next(new appError("please complete the details page first", 400))
+    return next(new appError("please complete the details page first ", 400))
   }
 
-  if (!address || !email || !mobile || !skills || !About) {
-    return next(new appError("please enter all the details ", 400))
-  }
+
 
 
   const resume = await Resume.create({
-    userName: req.userE.userName,
-    address: req.userE.address,
-    About,
-    mobile: req.userE.mobile,
-    email: req.userE.email,
-    experience: req.userE.experience,
-    DOB,
-    skills: req.userE.skills,
-    fresher,
+    userName: req.user.userName,
+    address: req.user.address,
+    about,
+    mobile: req.user.mobile,
+    education: req.user.education,
+    email: req.user.email,
+    experience: req.user.experience,
+    skills: req.user.skills,
+
     hobbies,
-    languages,
     urls,
+    user: req.user._id
 
   })
 

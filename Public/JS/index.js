@@ -1,16 +1,47 @@
 
 import '@babel/polyfill'
-import { addDetails, login, signup } from './functions';
+import { ExtraInformationResumeVariable, addDetails, login, logoutUser, makeTemplate, signup } from './functions';
+import axios from 'axios';
 
 let addExp = document.getElementById("addExp")
 let expBox = document.getElementById("expBox")
+let logout = document.getElementById("logout")
+let extraInfo = document.getElementById("extraInfo")
 
 
 let logins = document.querySelector('#loginfrom');
+let ExtraInfo = document.querySelector('#ExtraInfo');
 let signIn = document.querySelector('#signinForm');
 let resumeForm = document.querySelector('#resumeForm');
 
 
+
+if (ExtraInfo) {
+    // console.log(user);
+    ExtraInfo.addEventListener("submit", (e) => {
+        e.preventDefault();
+        console.log(e);
+        let obj = {};
+        Array.from(e.target).map(el => {
+            if (el.id) {
+                obj[el.id] = el.value
+            }
+        })
+        obj.skills = obj.skills.split(",")
+        obj.hobbies = obj.hobbies.split(",")
+        obj.urls = obj.links.split(",")
+        console.log("obj is ", obj);
+        ExtraInformationResumeVariable(obj);
+    })
+}
+
+if (logout) {
+    // console.log(user);
+    logout.addEventListener("click", (e) => {
+
+        logoutUser()
+    })
+}
 
 
 if (addExp) {

@@ -93,6 +93,20 @@ userSchema.methods.IsPasswordChanged = function (time) {
 }
 
 
+userSchema.methods.changedPasswords = async function (jwttokentime) {
+    if (this.changedPasswodTime) {
+        const change = parseInt(this.changedPasswodTime.getTime() / 1000, 10)
+        // console.log(jwttokentime, this.changedPasswodTime.getTime() / 1000);
+        // console.log(jwttokentime, change);
+        // console.log(jwttokentime < change);
+        return jwttokentime < change
+    }
+
+
+    // if user has not change the password at least once 
+    return false;
+}
+
 // now creating model out of schema 
 
 

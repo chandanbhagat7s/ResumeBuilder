@@ -27,7 +27,7 @@ const resumeSchema = new mongoose.Schema({
         minLenght: 5
     },
     education: {
-        type: [Object],
+        type: Object,
         required: [true, "you must provide your quallification"],
     },
     experience: {
@@ -41,24 +41,21 @@ const resumeSchema = new mongoose.Schema({
     },
     profession: {
         type: String,
-        required: [true, "must provide profession"],
+        // required: [true, "must provide profession"],
 
     },
-    About: {
+    about: {
         type: String,
         required: [true, "about should be provided"],
-        maxLength: [100, "About to be in short words"],
-        minLenght: [20, "describe something more about you"]
+        // maxLength: [100, "About to be in short words"],
+        // minLenght: [20, "describe something more about you"]
     },
 
 
 
 
 
-    DOB: {
-        type: Date,
-        required: true
-    },
+
 
 
     hobbies: {

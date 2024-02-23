@@ -35,6 +35,17 @@ const createTokenSendRes = (id, res, statusCode, data) => {
     })
 }
 
+
+
+exports.logout = function (req, res) {
+    console.log("came");
+    res.cookie('jwt', 'logout', {
+        expires: new Date(Date.now() + 10 * 1000),
+        httpOnly: true
+    })
+
+    res.status(200).json({ status: true })
+}
 exports.signUp = runAsync(async (req, res, next) => {
     console.log(req.body);
     const { userName, email, password, mobile } = req.body;

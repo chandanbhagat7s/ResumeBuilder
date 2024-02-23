@@ -24,26 +24,26 @@
     <nav class="ml-auto flex gap-4 sm:gap-6">
 
 
-        if user  
-
-            
-
-            <a class="text-sm font-medium hover:underline underline-offset-4" href="#">
-                |Features
-            </a>
-            <a class="text-sm font-medium hover:underline underline-offset-4" href="#">
-                |Pricing
-            </a>
-            <a class="text-sm font-medium hover:underline underline-offset-4" href="#">
-                |About
-            </a>
-            <a class="text-sm font-medium hover:underline underline-offset-4" href="#">
-                |Contact
-            </a>
-            button.btn.btn-outline-danger.logout Logout
-            a.btn(href='/me') 
-                img(src="./img/web/profile.png", class="img-fluid  rounded-circle", alt="..." style="max-width: 30px;")
-                p.card-text.text-white=user.name.split(' ')[0]
+        if user
+            form.d-flex.gap-2
+                a.btn( id="logout" class="bg-black text-white") Logout
+                a.btn.btn-outline-primary(href="/profile") Profile
+            //- <a class="text-sm font-medium hover:underline underline-offset-4" href="#">
+            //-     |Features
+            //- </a>
+            //- <a class="text-sm font-medium hover:underline underline-offset-4" href="#">
+            //-     |Pricing
+            //- </a>
+            //- <a class="text-sm font-medium hover:underline underline-offset-4" href="#">
+            //-     |About
+            //- </a>
+            //- <a class="text-sm font-medium hover:underline underline-offset-4" href="#">
+            //-     |Contact
+            //- </a>
+            //- button.btn.btn-outline-danger.logout Logout
+            //- a.btn(href='/me') 
+            //-     img(src="./img/web/profile.png", class="img-fluid  rounded-circle", alt="..." style="max-width: 30px;")
+            //-     p.card-text.text-white=user.name.split(' ')[0]
 
 
         else    
