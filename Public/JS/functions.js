@@ -100,17 +100,8 @@ export const ExtraInformationResumeVariable = async (data) => {
     }
 };
 export const signup = async (name, email, password, mobile, cnfPassword) => {
-    // console.log(email, password);
     try {
-        // const res = await axios({
-        //     method: 'POST',
-        //     url: 'http://127.0.0.1:3000/api/v1/user/login',
-        //     data: {
-        //         email,
-        //         password
-        //     }
-        // });
-        console.log();
+
 
         if (password != cnfPassword) {
             return showAlert('danger', "please check password and cnfPassword!")

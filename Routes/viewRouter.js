@@ -5,8 +5,8 @@ const Router = express.Router()
 
 
 // Router.get()
-Router.use(isLoggedIn).get('/', landingPage)
 Router.get('/login', login)
+Router.use(isLoggedIn).get('/', landingPage)
 Router.get('/completeDetails', resumeCompletionForm)
 Router.get('/signup', signup)
 Router.get('/others', others)

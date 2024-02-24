@@ -37,6 +37,7 @@ const createTokenSendRes = (id, res, statusCode, data) => {
 
 
 
+
 exports.logout = function (req, res) {
     console.log("came");
     res.cookie('jwt', 'logout', {
@@ -59,6 +60,24 @@ exports.signUp = runAsync(async (req, res, next) => {
     createTokenSendRes(newUser._id, res, 201, newUser)
 });
 
+exports.getUser = runAsync(async (req, res, next) => {
+
+    const user = await User.findById(req.user._id)
+
+
+
+    if (!user) {
+        return next(new appError("user Not found", 400));
+    }
+    console.log("user is", user);
+    res.status(200).send({
+        status: true,
+        data: user
+    })
+
+
+
+})
 exports.login = runAsync(async (req, res, next) => {
     const { email, password } = req.body;
 

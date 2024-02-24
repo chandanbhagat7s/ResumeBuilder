@@ -23,7 +23,7 @@ const generatePdf = (user) => {
   let templates = JSON.parse(data)
 
   // console.log(templates[0].data);
-  html = templates[1].data;
+  html = templates[0].data;
 
   var options = {
     format: "Letter",
@@ -109,37 +109,64 @@ exports.createResume = runAsync(async (req, res, next) => {
 
     return next(new appError("please complete the details page first ", 400))
   }
+  const belongs = await Resume.find({ user: req.user._id })
+  console.log("belongs", belongs);
+  if (belongs) {
+    console.log(belongs);
+    // console.log("id is ",belongs);
+    const insertedFurther = await Resume.findByIdAndUpdate(belongs[0]._id, {
+      about,
+      hobbies,
+      urls,
+      skills
+
+    }, {
+      new: true,
+      runValidators: true
+    })
+    if (!insertedFurther) {
+      return next(new appError("failed to store your data please try again", 500));
+    }
+    belongs && generatePdf(insertedFurther)
+    console.log("ins", insertedFurther);
+
+    res.status(200).send({
+      status: true,
+      data: insertedFurther
+    })
+
+  } else {
 
 
 
 
-  const resume = await Resume.create({
-    userName: req.user.userName,
-    address: req.user.address,
-    about,
-    mobile: req.user.mobile,
-    education: req.user.education,
-    email: req.user.email,
-    experience: req.user.experience,
-    skills: req.user.skills,
+    const resume = await Resume.create({
+      userName: req.user.userName,
+      address: req.user.address,
+      about,
+      mobile: req.user.mobile,
+      education: req.user.education,
+      email: req.user.email,
+      experience: req.user.experience,
+      skills: req.user.skills,
 
-    hobbies,
-    urls,
-    user: req.user._id
+      hobbies,
+      urls,
+      user: req.user._id
 
-  })
+    })
 
-  if (!resume) {
-    return next(new appError("resume not created ", 400))
+    if (!resume) {
+      return next(new appError("resume not created ", 400))
+    }
+    resume && generatePdf(resume)
+
+    res.status(200).send({
+      status: true,
+      data: resume
+    })
+
   }
-  resume && generatePdf(resume)
-
-  res.status(200).send({
-    status: true,
-    data: resume
-  })
-
-
 
 
 

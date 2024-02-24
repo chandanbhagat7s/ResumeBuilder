@@ -2,6 +2,7 @@
 import '@babel/polyfill'
 import { ExtraInformationResumeVariable, addDetails, login, logoutUser, makeTemplate, signup } from './functions';
 import axios from 'axios';
+import { showAlert } from './alerts';
 
 let addExp = document.getElementById("addExp")
 let expBox = document.getElementById("expBox")
@@ -13,12 +14,58 @@ let logins = document.querySelector('#loginfrom');
 let ExtraInfo = document.querySelector('#ExtraInfo');
 let signIn = document.querySelector('#signinForm');
 let resumeForm = document.querySelector('#resumeForm');
+let templatesTrackBtn = document.querySelectorAll('.template-btn');
+
+if (templatesTrackBtn) {
+    console.log(templatesTrackBtn);
+    Array.from(templatesTrackBtn).map((el) => {
+        console.log(el);
+        el.addEventListener("click", async (e) => {
+            // take the user id
+            // console.log(el);
+            console.log(e.target.dataset);
+            if (!e.target.dataset.user) {
+
+                showAlert("warning", "login first for the functionality")
+                setTimeout(() => {
+                    location.assign('/login')
+                }, [2000])
+            }
+            let userData = await axios.get("http://127.0.0.1:3001/api/v1/user/getUser")
+            console.log("requested", userData);
+            if (!userData) {
+                return showAlert("warning", "login or signup first for the functionality")
+            }
+
+            if (!userData.data.data.data) {
+
+                showAlert("warning", "please complete the details")
+
+                setTimeout(() => {
+                    location.assign('/completeDetails')
+                }, [1500])
 
 
+
+            }
+            showAlert("success", "please wait REDIRCTING")
+            setTimeout(() => {
+                location.assign('/others')
+            }, [1500])
+
+        })
+
+        ExtraInformationResumeVariable()
+
+
+
+    })
+}
 
 if (ExtraInfo) {
     // console.log(user);
     ExtraInfo.addEventListener("submit", (e) => {
+        showAlert("success", "creating your resume please wait")
         e.preventDefault();
         console.log(e);
         let obj = {};
@@ -127,7 +174,7 @@ if (logins) {
                 obj[el.id] = el.value
             }
         })
-        // console.log(obj);
+        console.log(obj);
         login(obj.email, obj.password);
     })
 

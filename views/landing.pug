@@ -33,21 +33,37 @@ block content
                     </div>
                         </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 items-start">
-                <div id='0' class="template-btn rounded-lg border bg-card text-card-foreground shadow-sm cursor-pointer" data-v0-t="card">
-                <div class="p-0">
-                <img src="/placeholder.svg" width="400" height="225" alt="Image" class="aspect-16/9 object-cover">
+
+                div(id='0', class="template-btn rounded-lg border bg-card text-card-foreground shadow-sm cursor-pointer",  data-v0-t="card",, data-user=`${user ? user._id : ''}`)
+                    div(class="p-0" data-user=`${user ? user._id : ''}` )
+                        img(src="/placeholder.svg" width="400" data-user=`${user ? user._id : ''}` height="225" alt="Image" class="aspect-16/9 object-cover")
+
+                    div(class="flex items-center p-4 " data-user=`${user ? user._id : ''}`)
+                        p(data-user=`${user ? user._id : ''}`  class="text-sm font-medium leading-none") Beach
+                
+                
+                div(id='0' class="template-btn rounded-lg border bg-card text-card-foreground shadow-sm cursor-pointer" data-v0-t="card")
+                    div(class="p-0" data-user=`${user ? user._id : ''}` )
+                        img(src="/placeholder.svg" width="400" data-user=`${user ? user._id : ''}` height="225" alt="Image" class="aspect-16/9 object-cover")
+
+                    div(class="flex items-center p-4 " data-user=`${user ? user._id : ''}`)
+                        p(data-user=`${user ? user._id : ''}`  class="text-sm font-medium leading-none") Beach
+                
+                div(id='0' class="template-btn rounded-lg border bg-card text-card-foreground shadow-sm cursor-pointer" data-v0-t="card")
+                    div(class="p-0" data-user=`${user ? user._id : ''}` )
+                        img(src="/placeholder.svg" width="400" data-user=`${user ? user._id : ''}` height="225" alt="Image" class="aspect-16/9 object-cover")
+
+                    div(class="flex items-center p-4 " data-user=`${user ? user._id : ''}`)
+                        p(data-user=`${user ? user._id : ''}`  class="text-sm font-medium leading-none") Beach
+                
+                div(id='0' class="template-btn rounded-lg border bg-card text-card-foreground shadow-sm cursor-pointer" data-v0-t="card")
+                    div(class="p-0" data-user=`${user ? user._id : ''}` )
+                        img(src="/placeholder.svg" width="400" data-user=`${user ? user._id : ''}` height="225" alt="Image" class="aspect-16/9 object-cover")
+
+                    div(class="flex items-center p-4 " data-user=`${user ? user._id : ''}`)
+                        p(data-user=`${user ? user._id : ''}`  class="text-sm font-medium leading-none") Beach
+                
                 </div>
-                <div class="flex items-center p-4">
-                <p class="text-sm font-medium leading-none">Beach</p>
-                </div>
-                </div>
-                <div id='default' class="template-btn rounded-lg border bg-card text-card-foreground shadow-sm cursor-pointer" data-v0-t="card">
-                <div class="p-0"><img src="/placeholder.svg" width="400" height="225" alt="Image" class="aspect-16/9 object-cover"></div>
-                <div class="flex items-center p-4"><p class="text-sm font-medium leading-none">Mountains</p>
-                </div>
-                </div>
-                <div id='advance' class="template-btn rounded-lg border bg-card text-card-foreground shadow-sm cursor-pointer" data-v0-t="card"><div class="p-0"><img src="/placeholder.svg" width="400" height="225" alt="Image" class="aspect-16/9 object-cover"></div><div class="flex items-center p-4"><p class="text-sm font-medium leading-none">City</p></div></div>
-                <div id='0' class="template-btn rounded-lg border bg-card text-card-foreground shadow-sm cursor-pointer" data-v0-t="card"><div class="p-0"><img src="/placeholder.svg" width="400" height="225" alt="Image" class="aspect-16/9 object-cover"></div><div class="flex items-center p-4"><p class="text-sm font-medium leading-none">Forest</p></div></div></div>
                 </section>
 
 
