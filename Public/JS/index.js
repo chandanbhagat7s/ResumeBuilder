@@ -39,23 +39,24 @@ if (templatesTrackBtn) {
 
             if (!userData.data.data.data) {
 
-                showAlert("warning", "please complete the details")
+                showAlert("info", "please complete the details")
 
                 setTimeout(() => {
                     location.assign('/completeDetails')
                 }, [1500])
 
-
+                return
 
             }
+            console.log("running");
             showAlert("success", "please wait REDIRCTING")
             setTimeout(() => {
                 location.assign('/others')
             }, [1500])
 
+            ExtraInformationResumeVariable()
         })
 
-        ExtraInformationResumeVariable()
 
 
 
@@ -78,7 +79,7 @@ if (ExtraInfo) {
         obj.hobbies = obj.hobbies.split(",")
         obj.urls = obj.links.split(",")
         console.log("obj is ", obj);
-        ExtraInformationResumeVariable(obj);
+        console.log("Called"); ExtraInformationResumeVariable(obj);
     })
 }
 
@@ -87,6 +88,7 @@ if (logout) {
     logout.addEventListener("click", (e) => {
 
         logoutUser()
+
     })
 }
 
@@ -96,8 +98,8 @@ if (addExp) {
         e.preventDefault()
         expBox.insertAdjacentHTML("beforeend", ` <br>
         <div id="expBox">
-        Category
-        <input class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="category1" placeholder="Field : Computer , Mechanical , Civil ..etc"  />
+        About
+        <textarea class="flex h-30 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="category" placeholder="Field : I have improved and worked as .. and skills i earned... "  ></textarea>
         Years you Worked
         <input class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="exp1" placeholder="Year : 1,2  or months : 0.5,0.6"  />
         From To (year)

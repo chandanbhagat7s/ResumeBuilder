@@ -4,16 +4,8 @@ import { showAlert } from "./alerts";
 
 
 export const login = async (email, password) => {
-    // console.log(email, password);
     try {
-        // const res = await axios({
-        //     method: 'POST',
-        //     url: 'http://127.0.0.1:3000/api/v1/user/login',
-        //     data: {
-        //         email,
-        //         password
-        //     }
-        // });
+
         const res = await axios.post('http://127.0.0.1:3001/api/v1/user/login', { email, password })
         console.log(res);
         if (res.data.status) {
@@ -43,7 +35,7 @@ export const logoutUser = async (data) => {
             showAlert('success', "logout Successfull !")
             window.setTimeout(() => {
                 location.assign('/');
-            }, 1500)
+            }, 400)
         }
 
 
@@ -96,7 +88,7 @@ export const ExtraInformationResumeVariable = async (data) => {
 
     } catch (err) {
         console.log(err);
-        showAlert('danger', err.response.data.msg)
+        showAlert('warning', err.response.data.msg)
     }
 };
 export const signup = async (name, email, password, mobile, cnfPassword) => {

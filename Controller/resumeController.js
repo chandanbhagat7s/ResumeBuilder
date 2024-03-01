@@ -23,23 +23,24 @@ const generatePdf = (user) => {
   let templates = JSON.parse(data)
 
   // console.log(templates[0].data);
-  html = templates[0].data;
+  html = templates[2].data;
+  let height = templates[2].height
+  let width = templates[2].width
 
   var options = {
-    format: "Letter",
-    orientation: "vartical",
-    border: "10mm",
+    format: "A4",
+    // orientation: "vartical",
+    height,
+    width,
+    border: "",
     header: {
-      height: "45mm",
-      contents: '<div style="text-align: center; font-size:2rem;font-weight:800;">RESUME</div>'
+      height: "2mm",
+
     },
     footer: {
-      height: "28mm",
+      height: "3mm",
       contents: {
-        first: 'Cover page',
-        2: 'Second page', // Any page number is working. 1-based index
-        default: '<span style="color: #444;">{{page}}</span>/<span>{{pages}}</span>', // fallback value
-        last: 'Last Page'
+
       }
     }
   };
@@ -47,10 +48,12 @@ const generatePdf = (user) => {
   var users = [
     // user
     {
-      name: user.name,
+      name: user.userName,
       address: user.address,
       email: user.email,
-      mobile: user.mobile
+      mobile: user.mobile,
+      about: user.about,
+      skills: [...user.skills].join(" ")
     }
   ];
   var document = {
@@ -67,8 +70,17 @@ const generatePdf = (user) => {
     .create(document, options)
     .then((res) => {
       console.log(res);
+      // res.status(200).send({
+      //   status: true,
+      //   data: insertedFurther
+      // })
     })
     .catch((error) => {
+      // res.status(200).send({
+      //   status: true,
+      //   data: insertedFurther
+      // })
+
       console.error(error);
     });
 };

@@ -1,110 +1,157 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Document</title> <!-- <script src='https://cdn.tailwindcss.com'></script> -->
 </head>
 
-<body>
-
-    <form class="space-y-6">
-        <div class="space-y-2"><label
-                class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                for="about">About</label><textarea
-                class="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                id="about" placeholder="Enter a brief description about yourself" required=""></textarea></div>
-        <div class="space-y-2"><label
-                class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                for="dob">Date of Birth (DOB)</label><input
-                class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                id="dob" type="date"></div>
-        <div class="space-y-2"><label
-                class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                for="urls">URLs</label><input
-                class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                id="urls" placeholder="Enter URLs separated by commas" multiple="" type="url"></div>
-        <div class="space-y-2"><label
-                class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Programming
-                Languages</label>
-            <div class="grid grid-cols-2 gap-4">
-                <div><button type="button" role="checkbox" aria-checked="false" data-state="unchecked" value="on"
-                        class="peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground"
-                        id="js"></button><input aria-hidden="true" tabindex="-1" type="checkbox" value="on"
-                        style="transform: translateX(-100%); position: absolute; pointer-events: none; opacity: 0; margin: 0px;"><label
-                        for="js" class="ml-2">
-                        JavaScript
-                    </label></div>
-                <div><button type="button" role="checkbox" aria-checked="false" data-state="unchecked" value="on"
-                        class="peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground"
-                        id="py"></button><input aria-hidden="true" tabindex="-1" type="checkbox" value="on"
-                        style="transform: translateX(-100%); position: absolute; pointer-events: none; opacity: 0; margin: 0px;"><label
-                        for="py" class="ml-2">
-                        Python
-                    </label></div>
-                <div><button type="button" role="checkbox" aria-checked="false" data-state="unchecked" value="on"
-                        class="peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground"
-                        id="rb"></button><input aria-hidden="true" tabindex="-1" type="checkbox" value="on"
-                        style="transform: translateX(-100%); position: absolute; pointer-events: none; opacity: 0; margin: 0px;"><label
-                        for="rb" class="ml-2">
-                        Ruby
-                    </label></div>
-                <div><button type="button" role="checkbox" aria-checked="false" data-state="unchecked" value="on"
-                        class="peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground"
-                        id="go"></button><input aria-hidden="true" tabindex="-1" type="checkbox" value="on"
-                        style="transform: translateX(-100%); position: absolute; pointer-events: none; opacity: 0; margin: 0px;"><label
-                        for="go" class="ml-2">
-                        Go
-                    </label></div>
-                <div><button type="button" role="checkbox" aria-checked="false" data-state="unchecked" value="on"
-                        class="peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground"
-                        id="csharp"></button><input aria-hidden="true" tabindex="-1" type="checkbox" value="on"
-                        style="transform: translateX(-100%); position: absolute; pointer-events: none; opacity: 0; margin: 0px;"><label
-                        for="csharp" class="ml-2">
-                        C#
-                    </label></div>
-                <div><button type="button" role="checkbox" aria-checked="false" data-state="unchecked" value="on"
-                        class="peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground"
-                        id="java"></button><input aria-hidden="true" tabindex="-1" type="checkbox" value="on"
-                        style="transform: translateX(-100%); position: absolute; pointer-events: none; opacity: 0; margin: 0px;"><label
-                        for="java" class="ml-2">
-                        Java
-                    </label></div>
-            </div>
-        </div>
-        <div class="space-y-2"><label
-                class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Hobbies</label>
-            <div><button type="button" role="checkbox" aria-checked="false" data-state="unchecked" value="on"
-                    class="peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground"
-                    id="music"></button><input aria-hidden="true" tabindex="-1" type="checkbox" value="on"
-                    style="transform: translateX(-100%); position: absolute; pointer-events: none; opacity: 0; margin: 0px;"><label
-                    for="music" class="ml-2">
-                    Listening to Music
-                </label></div>
-            <div><button type="button" role="checkbox" aria-checked="false" data-state="unchecked" value="on"
-                    class="peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground"
-                    id="sports"></button><input aria-hidden="true" tabindex="-1" type="checkbox" value="on"
-                    style="transform: translateX(-100%); position: absolute; pointer-events: none; opacity: 0; margin: 0px;"><label
-                    for="sports" class="ml-2">
-                    Playing Sports
-                </label></div>
-            <div><button type="button" role="checkbox" aria-checked="false" data-state="unchecked" value="on"
-                    class="peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground"
-                    id="reading"></button><input aria-hidden="true" tabindex="-1" type="checkbox" value="on"
-                    style="transform: translateX(-100%); position: absolute; pointer-events: none; opacity: 0; margin: 0px;"><label
-                    for="reading" class="ml-2">
-                    Reading Books
-                </label></div>
-            <div><button type="button" role="checkbox" aria-checked="false" data-state="unchecked" value="on"
-                    class="peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground"
-                    id="painting"></button><input aria-hidden="true" tabindex="-1" type="checkbox" value="on"
-                    style="transform: translateX(-100%); position: absolute; pointer-events: none; opacity: 0; margin: 0px;"><label
-                    for="painting" class="ml-2">
-                    Painting
-                </label></div>
-        </div>
-    </form>
+<body style='display: flex; justify-content: center;'>
+    <div style='width:800px; height: 800px; position: relative; overflow: hidden; background: #fff;'>{{#each users}} <p
+            style='position: absolute; left: 32px; top: 32px; font-size: 16px; font-weight: 600; text-align: left; color: #222;'>
+            Kate Bishop {{this.name}} </p>
+        <p
+            style='position: absolute; left: 32px; top: 58px; font-size: 10px; font-weight: 500; text-align: left; color: #222;'>
+            Product Designer </p>
+        <p
+            style='position: absolute; left: 32px; top: 156px; font-size: 10px; font-weight: 600; text-align: left; color: #222;'>
+            Experience </p>
+        <p
+            style='position: absolute; left: 32px; top: 552px; font-size: 10px; font-weight: 600; text-align: left; color: #222;'>
+            Education </p>
+        <p
+            style='position: absolute; left: 32px; top: 704px; font-size: 10px; font-weight: 600; text-align: left; color: #222;'>
+            Skills </p>
+        <p style='position: absolute; left: 168px; top: 156px; font-size: 10px; text-align: left; color: #222;'> Product
+            Designer </p>
+        <p style='position: absolute; left: 168px; top: 284px; font-size: 10px; text-align: left; color: #222;'> UX
+            Designer </p>
+        <p style='position: absolute; left: 168px; top: 364px; font-size: 10px; text-align: left; color: #222;'>
+            Associate UX Designer </p>
+        <p style='position: absolute; left: 168px; top: 456px; font-size: 10px; text-align: left; color: #222;'> UX
+            Analyst </p>
+        <p style='position: absolute; left: 168px; top: 570px; font-size: 10px; text-align: left; color: #222;'>
+            Master’s in Human-Computer Interaction </p>
+        <p style='position: absolute; left: 168px; top: 634px; font-size: 10px; text-align: left; color: #222;'>
+            Bachelor's of Arts </p>
+        <p
+            style='position: absolute; left: 168px; top: 174px; font-size: 10px; font-weight: 600; text-align: left; color: #222;'>
+            Fintef </p>
+        <p
+            style='position: absolute; left: 168px; top: 302px; font-size: 10px; font-weight: 600; text-align: left; color: #222;'>
+            Resume Worded </p>
+        <p
+            style='position: absolute; left: 168px; top: 382px; font-size: 10px; font-weight: 600; text-align: left; color: #222;'>
+            Growshi </p>
+        <p
+            style='position: absolute; left: 168px; top: 474px; font-size: 10px; font-weight: 600; text-align: left; color: #222;'>
+            Growshi </p>
+        <p
+            style='position: absolute; left: 168px; top: 552px; font-size: 10px; font-weight: 600; text-align: left; color: #222;'>
+            Copenhagen School of Design and Technology </p>
+        <p
+            style='position: absolute; left: 168px; top: 616px; font-size: 10px; font-weight: 600; text-align: left; color: #222;'>
+            Copenhagen School of Design and Technology </p>
+        <p
+            style='position: absolute; left: 168px; top: 196px; font-size: 9px; font-weight: 500; text-align: left; color: #797979;'>
+            Oct 2019 - Present </p>
+        <p
+            style='position: absolute; left: 168px; top: 324px; font-size: 9px; font-weight: 500; text-align: left; color: #797979;'>
+            Sep 2017 – Sep 2019 </p>
+        <p
+            style='position: absolute; left: 168px; top: 404px; font-size: 9px; font-weight: 500; text-align: left; color: #797979;'>
+            Dec 2016 – Aug 2017 </p>
+        <p
+            style='position: absolute; left: 168px; top: 496px; font-size: 9px; font-weight: 500; text-align: left; color: #797979;'>
+            Mar 2016 – Dec 2016 </p>
+        <p
+            style='position: absolute; left: 168px; top: 592px; font-size: 9px; font-weight: 500; text-align: left; color: #797979;'>
+            Sep 2015 – Jun 2016 </p>
+        <p
+            style='position: absolute; left: 168px; top: 656px; font-size: 9px; font-weight: 500; text-align: left; color: #797979;'>
+            Sep 2011 – Jun 2015 </p>
+        <p
+            style='width: 256px; position: absolute; left: 307px; top: 156px; font-size: 8px; text-align: left; color: #222;'>
+            <span style='width: 256px; font-size: 8px; text-align: left; color: #222;'>Designed end-to-end experience
+                for financial products on mobile & web platforms.</span><br /><span
+                style='width: 256px; font-size: 8px; text-align: left; color: #222;'>Working closely with managers,
+                marketing specialists and developers.</span><br /><span
+                style='width: 256px; font-size: 8px; text-align: left; color: #222;'>Did user testing sessions to gather
+                feedback, validate product features and brand perception.</span><br /><span
+                style='width: 256px; font-size: 8px; text-align: left; color: #222;'>Conducted A/B tests for product
+                features and design variations.</span><br /><span
+                style='width: 256px; font-size: 8px; text-align: left; color: #222;'>Led the design process during of
+                the rebranding project.</span><br /><span
+                style='width: 256px; font-size: 8px; text-align: left; color: #222;'>Supported the engineering team with
+                design deliverables.</span> </p>
+        <p
+            style='width: 256px; position: absolute; left: 307px; top: 284px; font-size: 8px; text-align: left; color: #222;'>
+            <span style='width: 256px; font-size: 8px; text-align: left; color: #222;'>Revamped website flows and
+                navigation menus, reducing the frequency of misdirected customer service queries by
+                30%.</span><br /><span style='width: 256px; font-size: 8px; text-align: left; color: #222;'>Conducted
+                user testing with 10+ participants using UserTesting.com; designed against findings which reduced bounce
+                rate for primary user flow by 30%.</span> </p>
+        <p
+            style='width: 256px; position: absolute; left: 307px; top: 364px; font-size: 8px; text-align: left; color: #222;'>
+            <span style='width: 256px; font-size: 8px; text-align: left; color: #222;'>Redesigned company’s homepage and
+                lead generation forms using existing design system; reduced bounce rates by 40% and increased leads by
+                15%. </span><br /><span style='width: 256px; font-size: 8px; text-align: left; color: #222;'>Designed an
+                online customer support center comprising of a self-service knowledge base and interactive chat bot.
+                Coached 3 summer interns.</span> </p>
+        <p
+            style='width: 256px; position: absolute; left: 307px; top: 456px; font-size: 8px; text-align: left; color: #222;'>
+            <span style='width: 256px; font-size: 8px; text-align: left; color: #222;'>Managed redesign of internal
+                tracking system in use by 125 employees, resulting in 20+ new features and 25% higher engagement.
+            </span><br /><span style='width: 256px; font-size: 8px; text-align: left; color: #222;'>Worked with product
+                managers to validate design hypotheses by conducting interviews and usability sessions.</span> </p>
+        <p
+            style='position: absolute; left: 168px; top: 49px; font-size: 8px; font-weight: 500; text-align: left; color: #000;'>
+            linkedin.com/in/kate-bishop </p>
+        <p
+            style='position: absolute; left: 168px; top: 36px; font-size: 8px; font-weight: 500; text-align: left; color: #222;'>
+            kate.bishop@katedesign.com </p>
+        <p
+            style='position: absolute; left: 168px; top: 62px; font-size: 8px; font-weight: 500; text-align: left; color: #222;'>
+            +46 98-765 43 21 </p>
+        <p
+            style='width: 120px; position: absolute; left: 168px; top: 708px; font-size: 8px; text-align: left; color: #222;'>
+            <span style='width: 120px; font-size: 8px; text-align: left; color: #222;'>Product
+                discovery</span><br /><span
+                style='width: 120px; font-size: 8px; text-align: left; color: #222;'>Business analysis
+            </span><br /><span style='width: 120px; font-size: 8px; text-align: left; color: #222;'>UX
+                research</span><br /><span style='width: 120px; font-size: 8px; text-align: left; color: #222;'>User
+                testing</span><br /><span style='width: 120px; font-size: 8px; text-align: left; color: #222;'>Customer
+                journey mapping</span><br /><span
+                style='width: 120px; font-size: 8px; text-align: left; color: #222;'>Information
+                architecture</span><br /><span
+                style='width: 120px; font-size: 8px; text-align: left; color: #222;'>Wireframing </span><br /><span
+                style='width: 120px; font-size: 8px; text-align: left; color: #222;'>Prototyping</span> </p>
+        <p
+            style='width: 120px; position: absolute; left: 304px; top: 708px; font-size: 8px; text-align: left; color: #222;'>
+            <span style='width: 120px; font-size: 8px; text-align: left; color: #222;'>UI design</span><br /><span
+                style='width: 120px; font-size: 8px; text-align: left; color: #222;'>Illustration</span><br /><span
+                style='width: 120px; font-size: 8px; text-align: left; color: #222;'>2D Animation</span><br /><span
+                style='width: 120px; font-size: 8px; text-align: left; color: #222;'>Interaction
+                design</span><br /><span style='width: 120px; font-size: 8px; text-align: left; color: #222;'>Design
+                system</span><br /><span style='width: 120px; font-size: 8px; text-align: left; color: #222;'>Design
+                sprints</span><br /><span style='width: 120px; font-size: 8px; text-align: left; color: #222;'>Workshop
+                facilitation</span><br /><span style='width: 120px; font-size: 8px; text-align: left; color: #222;'>A/B
+                testing</span> </p>
+        <p
+            style='width: 120px; position: absolute; left: 440px; top: 708px; font-size: 8px; text-align: left; color: #222;'>
+            <span style='width: 120px; font-size: 8px; text-align: left; color: #222;'>Figma </span><br /><span
+                style='width: 120px; font-size: 8px; text-align: left; color: #222;'>Sketch</span><br /><span
+                style='width: 120px; font-size: 8px; text-align: left; color: #222;'>Adobe Illustrator</span><br /><span
+                style='width: 120px; font-size: 8px; text-align: left; color: #222;'>ProtoPie </span><br /><span
+                style='width: 120px; font-size: 8px; text-align: left; color: #222;'>Miro</span><br /><span
+                style='width: 120px; font-size: 8px; text-align: left; color: #222;'>Notion</span><br /><span
+                style='width: 120px; font-size: 8px; text-align: left; color: #222;'>Jira</span> </p>
+        <p
+            style='width: 456px; position: absolute; left: 32px; top: 96px; font-size: 8px; text-align: left; color: #222;'>
+            Over 5 years of professional experience conducting UX research and designing interactive end-to-end user
+            flows. I enjoy working in close collaboration with teams across technology, business and design. </p>
+    </div>
 </body>
 
 </html>

@@ -11970,8 +11970,8 @@ var hideAlert = exports.hideAlert = function hideAlert() {
 var showAlert = exports.showAlert = function showAlert(type, msg) {
   console.log("came inside");
   hideAlert();
-  var markup = "<div class=\"alert alert-".concat(type, "\">").concat(msg, "</div>");
-  document.querySelector('body').insertAdjacentHTML('afterbegin', markup);
+  var markup = "<div class=\" animate-bounce translate-y-6  w-75 m-auto text-center font-bold capitalize alert alert-".concat(type, " fixed-top\">").concat(msg, " </div>");
+  document.querySelector('body').insertAdjacentHTML("beforebegin", markup);
   window.setTimeout(hideAlert, 5000);
 };
 },{}],"functions.js":[function(require,module,exports) {
@@ -12048,7 +12048,7 @@ var logoutUser = exports.logoutUser = /*#__PURE__*/function () {
             (0, _alerts.showAlert)('success', "logout Successfull !");
             window.setTimeout(function () {
               location.assign('/');
-            }, 1500);
+            }, 400);
           }
           _context2.next = 13;
           break;
@@ -12127,7 +12127,7 @@ var ExtraInformationResumeVariable = exports.ExtraInformationResumeVariable = /*
           _context4.prev = 8;
           _context4.t0 = _context4["catch"](0);
           console.log(_context4.t0);
-          (0, _alerts.showAlert)('danger', _context4.t0.response.data.msg);
+          (0, _alerts.showAlert)('warning', _context4.t0.response.data.msg);
         case 12:
         case "end":
           return _context4.stop();
@@ -12409,17 +12409,23 @@ if (templatesTrackBtn) {
               }
               return _context.abrupt("return", (0, _alerts.showAlert)("warning", "login or signup first for the functionality"));
             case 8:
-              if (!userData.data.data.data) {
-                (0, _alerts.showAlert)("warning", "please complete the details");
-                setTimeout(function () {
-                  location.assign('/completeDetails');
-                }, [1500]);
+              if (userData.data.data.data) {
+                _context.next = 12;
+                break;
               }
+              (0, _alerts.showAlert)("info", "please complete the details");
+              setTimeout(function () {
+                location.assign('/completeDetails');
+              }, [1500]);
+              return _context.abrupt("return");
+            case 12:
+              console.log("running");
               (0, _alerts.showAlert)("success", "please wait REDIRCTING");
               setTimeout(function () {
                 location.assign('/others');
               }, [1500]);
-            case 11:
+              (0, _functions.ExtraInformationResumeVariable)();
+            case 16:
             case "end":
               return _context.stop();
           }
@@ -12429,7 +12435,6 @@ if (templatesTrackBtn) {
         return _ref.apply(this, arguments);
       };
     }());
-    (0, _functions.ExtraInformationResumeVariable)();
   });
 }
 if (ExtraInfo) {
@@ -12448,6 +12453,7 @@ if (ExtraInfo) {
     obj.hobbies = obj.hobbies.split(",");
     obj.urls = obj.links.split(",");
     console.log("obj is ", obj);
+    console.log("Called");
     (0, _functions.ExtraInformationResumeVariable)(obj);
   });
 }
@@ -12460,7 +12466,7 @@ if (logout) {
 if (addExp) {
   addExp.addEventListener("click", function (e) {
     e.preventDefault();
-    expBox.insertAdjacentHTML("beforeend", " <br>\n        <div id=\"expBox\">\n        Category\n        <input class=\"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50\" id=\"category1\" placeholder=\"Field : Computer , Mechanical , Civil ..etc\"  />\n        Years you Worked\n        <input class=\"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50\" id=\"exp1\" placeholder=\"Year : 1,2  or months : 0.5,0.6\"  />\n        From To (year)\n        <input class=\"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50\" id=\"fromto1\" placeholder=\"2021-2022\"  />\n        Position\n        <input class=\"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50\" id=\"position1\" placeholder=\"Web developer, android dev..\"  />\n        </div>");
+    expBox.insertAdjacentHTML("beforeend", " <br>\n        <div id=\"expBox\">\n        About\n        <textarea class=\"flex h-30 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50\" id=\"category\" placeholder=\"Field : I have improved and worked as .. and skills i earned... \"  ></textarea>\n        Years you Worked\n        <input class=\"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50\" id=\"exp1\" placeholder=\"Year : 1,2  or months : 0.5,0.6\"  />\n        From To (year)\n        <input class=\"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50\" id=\"fromto1\" placeholder=\"2021-2022\"  />\n        Position\n        <input class=\"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50\" id=\"position1\" placeholder=\"Web developer, android dev..\"  />\n        </div>");
   });
 }
 if (resumeForm) {
@@ -12565,7 +12571,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53445" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58757" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
