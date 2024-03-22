@@ -77,11 +77,11 @@ export const ExtraInformationResumeVariable = async (data) => {
 
 
         const res = await axios.post('http://127.0.0.1:3001/api/v1/resume/', { ...data })
-        console.log(res);
+        console.log("****&&&*****", res);
         if (res.data.status) {
             showAlert("success", "Data is Saved ,Creating your resume ")
             window.setTimeout(() => {
-                // location.assign('/');
+                location.assign(`/files/${res.data.data._id}-output.pdf`);
             }, 1500)
         }
 
@@ -128,7 +128,7 @@ export const makeTemplate = async (tmplateName, data) => {
         if (res.response.data) {
             showAlert("success", "resume is created")
             window.setTimeout(() => {
-                // location.assign('/');
+                location.assign(`/`);
             }, 1500)
         }
 

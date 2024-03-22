@@ -7,10 +7,10 @@
     <title>Document</title> <!-- <script src='https://cdn.tailwindcss.com'></script> -->
 </head>
 
-<body style='display: flex; justify-content: center;'>
+<body style='display: flex; justify-content: center; margin-left:' 100px'>
     <div style='width:800px; height: 800px; position: relative; overflow: hidden; background: #fff;'>{{#each users}} <p
             style='position: absolute; left: 32px; top: 32px; font-size: 16px; font-weight: 600; text-align: left; color: #222;'>
-            Kate Bishop {{this.name}} </p>
+            {{this.name}} </p>
         <p
             style='position: absolute; left: 32px; top: 58px; font-size: 10px; font-weight: 500; text-align: left; color: #222;'>
             Product Designer </p>
@@ -21,136 +21,66 @@
             style='position: absolute; left: 32px; top: 552px; font-size: 10px; font-weight: 600; text-align: left; color: #222;'>
             Education </p>
         <p
-            style='position: absolute; left: 32px; top: 704px; font-size: 10px; font-weight: 600; text-align: left; color: #222;'>
+            style='position: absolute; left: 32px; top: 745px; font-size: 10px; font-weight: 600; text-align: left; color: #222;'>
             Skills </p>
-        <p style='position: absolute; left: 168px; top: 156px; font-size: 10px; text-align: left; color: #222;'> Product
-            Designer </p>
-        <p style='position: absolute; left: 168px; top: 284px; font-size: 10px; text-align: left; color: #222;'> UX
-            Designer </p>
-        <p style='position: absolute; left: 168px; top: 364px; font-size: 10px; text-align: left; color: #222;'>
-            Associate UX Designer </p>
-        <p style='position: absolute; left: 168px; top: 456px; font-size: 10px; text-align: left; color: #222;'> UX
-            Analyst </p>
-        <p style='position: absolute; left: 168px; top: 570px; font-size: 10px; text-align: left; color: #222;'>
-            Master’s in Human-Computer Interaction </p>
-        <p style='position: absolute; left: 168px; top: 634px; font-size: 10px; text-align: left; color: #222;'>
-            Bachelor's of Arts </p>
-        <p
-            style='position: absolute; left: 168px; top: 174px; font-size: 10px; font-weight: 600; text-align: left; color: #222;'>
-            Fintef </p>
-        <p
-            style='position: absolute; left: 168px; top: 302px; font-size: 10px; font-weight: 600; text-align: left; color: #222;'>
-            Resume Worded </p>
-        <p
-            style='position: absolute; left: 168px; top: 382px; font-size: 10px; font-weight: 600; text-align: left; color: #222;'>
-            Growshi </p>
-        <p
-            style='position: absolute; left: 168px; top: 474px; font-size: 10px; font-weight: 600; text-align: left; color: #222;'>
-            Growshi </p>
+        <p style='position: absolute; left: 168px; top: 156px; font-size: 10px; text-align: left; color: #222;'>
+            {{this.experience.first.experience}} {{#ifCond this.education.degree.universityName.length '>' 0}}
         <p
             style='position: absolute; left: 168px; top: 552px; font-size: 10px; font-weight: 600; text-align: left; color: #222;'>
-            Copenhagen School of Design and Technology </p>
-        <p
-            style='position: absolute; left: 168px; top: 616px; font-size: 10px; font-weight: 600; text-align: left; color: #222;'>
-            Copenhagen School of Design and Technology </p>
-        <p
-            style='position: absolute; left: 168px; top: 196px; font-size: 9px; font-weight: 500; text-align: left; color: #797979;'>
-            Oct 2019 - Present </p>
-        <p
-            style='position: absolute; left: 168px; top: 324px; font-size: 9px; font-weight: 500; text-align: left; color: #797979;'>
-            Sep 2017 – Sep 2019 </p>
-        <p
-            style='position: absolute; left: 168px; top: 404px; font-size: 9px; font-weight: 500; text-align: left; color: #797979;'>
-            Dec 2016 – Aug 2017 </p>
-        <p
-            style='position: absolute; left: 168px; top: 496px; font-size: 9px; font-weight: 500; text-align: left; color: #797979;'>
-            Mar 2016 – Dec 2016 </p>
+            University Name : {{this.education.degree.universityName}} </p>
+        <p style='position: absolute; left: 168px; top: 570px; font-size: 10px; text-align: left; color: #222;'> College
+            Name : {{this.education.degree.collegeName}} </p>
         <p
             style='position: absolute; left: 168px; top: 592px; font-size: 9px; font-weight: 500; text-align: left; color: #797979;'>
-            Sep 2015 – Jun 2016 </p>
+            Passing Year : {{this.education.degree.passingYear}} </p> {{/ifCond}} <p
+            style='position: absolute; left: 168px; top: 634px; font-size: 10px; text-align: left; color: #222;'> class
+            12 college Name : {{this.education.class12.collegeName}} </p>
         <p
-            style='position: absolute; left: 168px; top: 656px; font-size: 9px; font-weight: 500; text-align: left; color: #797979;'>
-            Sep 2011 – Jun 2015 </p>
+            style='position: absolute; left: 168px; top: 616px; font-size: 10px; font-weight: 600; text-align: left; color: #222;'>
+            Class 12 : {{this.education.class12.board}} </p>
+        <p
+            style='position: absolute; left: 168px; top: 660px; font-size: 9px; font-weight: 500; text-align: left; color: #797979;'>
+            class 12 Passing Year : {{this.education.class12.passingYear}} </p>
+        <p
+            style='position: absolute; left: 168px; top: 690px; font-size: 10px; font-weight: 600; text-align: left; color: #222;'>
+            Class 10 : {{this.education.class10.board}} </p>
+        <p style='position: absolute; left: 168px; top: 705px; font-size: 10px; text-align: left; color: #222;'> class
+            10 School Name : {{this.education.class10.schoolName}} </p>
+        <p
+            style='position: absolute; left: 168px; top: 725px; font-size: 9px; font-weight: 500; text-align: left; color: #797979;'>
+            class 10 Passing Year : {{this.education.class10.passingYear}} </p>
+        <p
+            style='position: absolute; left: 168px; top: 155px; font-size: 10px; font-weight: 600; text-align: left; color: #222;'>
+            {{this.experience.first.position}} </p>
+        <p
+            style='position: absolute; left: 168px; top: 170px; font-size: 10px; font-weight: 600; text-align: left; color: #222;'>
+            Duration {{this.experience.first.exp}} </p>
+        <p
+            style='position: absolute; left: 168px; top: 185px; font-size: 9px; font-weight: 500; text-align: left; color: #797979;'>
+            {{this.experience.first.fromto}} </p>
         <p
             style='width: 256px; position: absolute; left: 307px; top: 156px; font-size: 8px; text-align: left; color: #222;'>
-            <span style='width: 256px; font-size: 8px; text-align: left; color: #222;'>Designed end-to-end experience
-                for financial products on mobile & web platforms.</span><br /><span
-                style='width: 256px; font-size: 8px; text-align: left; color: #222;'>Working closely with managers,
-                marketing specialists and developers.</span><br /><span
-                style='width: 256px; font-size: 8px; text-align: left; color: #222;'>Did user testing sessions to gather
-                feedback, validate product features and brand perception.</span><br /><span
-                style='width: 256px; font-size: 8px; text-align: left; color: #222;'>Conducted A/B tests for product
-                features and design variations.</span><br /><span
-                style='width: 256px; font-size: 8px; text-align: left; color: #222;'>Led the design process during of
-                the rebranding project.</span><br /><span
-                style='width: 256px; font-size: 8px; text-align: left; color: #222;'>Supported the engineering team with
-                design deliverables.</span> </p>
-        <p
-            style='width: 256px; position: absolute; left: 307px; top: 284px; font-size: 8px; text-align: left; color: #222;'>
-            <span style='width: 256px; font-size: 8px; text-align: left; color: #222;'>Revamped website flows and
-                navigation menus, reducing the frequency of misdirected customer service queries by
-                30%.</span><br /><span style='width: 256px; font-size: 8px; text-align: left; color: #222;'>Conducted
-                user testing with 10+ participants using UserTesting.com; designed against findings which reduced bounce
-                rate for primary user flow by 30%.</span> </p>
-        <p
-            style='width: 256px; position: absolute; left: 307px; top: 364px; font-size: 8px; text-align: left; color: #222;'>
-            <span style='width: 256px; font-size: 8px; text-align: left; color: #222;'>Redesigned company’s homepage and
-                lead generation forms using existing design system; reduced bounce rates by 40% and increased leads by
-                15%. </span><br /><span style='width: 256px; font-size: 8px; text-align: left; color: #222;'>Designed an
-                online customer support center comprising of a self-service knowledge base and interactive chat bot.
-                Coached 3 summer interns.</span> </p>
-        <p
-            style='width: 256px; position: absolute; left: 307px; top: 456px; font-size: 8px; text-align: left; color: #222;'>
-            <span style='width: 256px; font-size: 8px; text-align: left; color: #222;'>Managed redesign of internal
-                tracking system in use by 125 employees, resulting in 20+ new features and 25% higher engagement.
-            </span><br /><span style='width: 256px; font-size: 8px; text-align: left; color: #222;'>Worked with product
-                managers to validate design hypotheses by conducting interviews and usability sessions.</span> </p>
+            <span style='width: 256px; font-size: 8px; text-align: left; color: #222;'> {{this.experience.first.about}}
+        </p>
         <p
             style='position: absolute; left: 168px; top: 49px; font-size: 8px; font-weight: 500; text-align: left; color: #000;'>
             linkedin.com/in/kate-bishop </p>
         <p
             style='position: absolute; left: 168px; top: 36px; font-size: 8px; font-weight: 500; text-align: left; color: #222;'>
-            kate.bishop@katedesign.com </p>
+            {{this.email}} </p>
         <p
             style='position: absolute; left: 168px; top: 62px; font-size: 8px; font-weight: 500; text-align: left; color: #222;'>
-            +46 98-765 43 21 </p>
+            {{this.mobile}} </p>
         <p
-            style='width: 120px; position: absolute; left: 168px; top: 708px; font-size: 8px; text-align: left; color: #222;'>
-            <span style='width: 120px; font-size: 8px; text-align: left; color: #222;'>Product
-                discovery</span><br /><span
-                style='width: 120px; font-size: 8px; text-align: left; color: #222;'>Business analysis
-            </span><br /><span style='width: 120px; font-size: 8px; text-align: left; color: #222;'>UX
-                research</span><br /><span style='width: 120px; font-size: 8px; text-align: left; color: #222;'>User
-                testing</span><br /><span style='width: 120px; font-size: 8px; text-align: left; color: #222;'>Customer
-                journey mapping</span><br /><span
-                style='width: 120px; font-size: 8px; text-align: left; color: #222;'>Information
-                architecture</span><br /><span
-                style='width: 120px; font-size: 8px; text-align: left; color: #222;'>Wireframing </span><br /><span
-                style='width: 120px; font-size: 8px; text-align: left; color: #222;'>Prototyping</span> </p>
+            style='position: absolute; left: 168px; top: 78px; font-size: 8px; font-weight: 500; text-align: left; color: #222;'>
+            {{this.address}} </p>
         <p
-            style='width: 120px; position: absolute; left: 304px; top: 708px; font-size: 8px; text-align: left; color: #222;'>
-            <span style='width: 120px; font-size: 8px; text-align: left; color: #222;'>UI design</span><br /><span
-                style='width: 120px; font-size: 8px; text-align: left; color: #222;'>Illustration</span><br /><span
-                style='width: 120px; font-size: 8px; text-align: left; color: #222;'>2D Animation</span><br /><span
-                style='width: 120px; font-size: 8px; text-align: left; color: #222;'>Interaction
-                design</span><br /><span style='width: 120px; font-size: 8px; text-align: left; color: #222;'>Design
-                system</span><br /><span style='width: 120px; font-size: 8px; text-align: left; color: #222;'>Design
-                sprints</span><br /><span style='width: 120px; font-size: 8px; text-align: left; color: #222;'>Workshop
-                facilitation</span><br /><span style='width: 120px; font-size: 8px; text-align: left; color: #222;'>A/B
-                testing</span> </p>
-        <p
-            style='width: 120px; position: absolute; left: 440px; top: 708px; font-size: 8px; text-align: left; color: #222;'>
-            <span style='width: 120px; font-size: 8px; text-align: left; color: #222;'>Figma </span><br /><span
-                style='width: 120px; font-size: 8px; text-align: left; color: #222;'>Sketch</span><br /><span
-                style='width: 120px; font-size: 8px; text-align: left; color: #222;'>Adobe Illustrator</span><br /><span
-                style='width: 120px; font-size: 8px; text-align: left; color: #222;'>ProtoPie </span><br /><span
-                style='width: 120px; font-size: 8px; text-align: left; color: #222;'>Miro</span><br /><span
-                style='width: 120px; font-size: 8px; text-align: left; color: #222;'>Notion</span><br /><span
-                style='width: 120px; font-size: 8px; text-align: left; color: #222;'>Jira</span> </p>
+            style='width: 120px; position: absolute; left: 168px; top: 765px; font-size: 8px; text-align: left; color: #222;'>
+            <span style='width: 120px; font-size: 24px; font-weight: 700; text-align: left; color: #222;'>
+                {{this.skills}}</span><br /></p>
         <p
             style='width: 456px; position: absolute; left: 32px; top: 96px; font-size: 8px; text-align: left; color: #222;'>
-            Over 5 years of professional experience conducting UX research and designing interactive end-to-end user
-            flows. I enjoy working in close collaboration with teams across technology, business and design. </p>
+            {{this.about}} </p>{{/each}}
     </div>
 </body>
 

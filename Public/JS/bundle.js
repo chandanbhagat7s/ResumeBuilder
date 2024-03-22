@@ -12114,11 +12114,11 @@ var ExtraInformationResumeVariable = exports.ExtraInformationResumeVariable = /*
           return _axios.default.post('http://127.0.0.1:3001/api/v1/resume/', _objectSpread({}, data));
         case 3:
           _res4 = _context4.sent;
-          console.log(_res4);
+          console.log("****&&&*****", _res4);
           if (_res4.data.status) {
             (0, _alerts.showAlert)("success", "Data is Saved ,Creating your resume ");
             window.setTimeout(function () {
-              // location.assign('/');
+              location.assign("/files/".concat(_res4.data.data._id, "-output.pdf"));
             }, 1500);
           }
           _context4.next = 12;
@@ -12199,7 +12199,7 @@ var makeTemplate = exports.makeTemplate = /*#__PURE__*/function () {
           if (_res6.response.data) {
             (0, _alerts.showAlert)("success", "resume is created");
             window.setTimeout(function () {
-              // location.assign('/');
+              location.assign("/");
             }, 1500);
           }
           _context6.next = 12;
@@ -12466,7 +12466,7 @@ if (logout) {
 if (addExp) {
   addExp.addEventListener("click", function (e) {
     e.preventDefault();
-    expBox.insertAdjacentHTML("beforeend", " <br>\n        <div id=\"expBox\">\n        About\n        <textarea class=\"flex h-30 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50\" id=\"category\" placeholder=\"Field : I have improved and worked as .. and skills i earned... \"  ></textarea>\n        Years you Worked\n        <input class=\"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50\" id=\"exp1\" placeholder=\"Year : 1,2  or months : 0.5,0.6\"  />\n        From To (year)\n        <input class=\"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50\" id=\"fromto1\" placeholder=\"2021-2022\"  />\n        Position\n        <input class=\"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50\" id=\"position1\" placeholder=\"Web developer, android dev..\"  />\n        </div>");
+    expBox.insertAdjacentHTML("beforeend", " <br>\n        <div id=\"expBox\">\n        About\n        <textarea class=\"flex h-30 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50\" id=\"about1\" placeholder=\"Field : I have improved and worked as .. and skills i earned... \"  ></textarea>\n        Years you Worked\n        <input class=\"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50\" id=\"exp1\" placeholder=\"Year : 1,2  or months : 0.5,0.6\"  />\n        Name of Orgainization for which you worked\n            <input class=\"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50\" id=\"org1\" placeholder=\"company\"  />\n        From To (year)\n        <input class=\"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50\" id=\"fromto1\" placeholder=\"2021-2022\"  />\n\n        Position\n        <input class=\"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50\" id=\"position1\" placeholder=\"Web developer, android dev..\"  />\n        </div>");
   });
 }
 if (resumeForm) {
@@ -12480,13 +12480,15 @@ if (resumeForm) {
     });
     obj.experience = {
       first: {
-        category: obj.category || '',
+        about: obj.about || '',
+        org: obj.org || '',
         fromto: obj.fromto || '',
         exp: obj.exp || '',
         position: obj.position || ''
       },
       second: {
-        category: obj.category1 || '',
+        org: obj.org1 || '',
+        about: obj.about1 || '',
         fromto: obj.fromto1 || '',
         exp: obj.exp1 || '',
         position: obj.position1 || ''
@@ -12571,7 +12573,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58757" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64484" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

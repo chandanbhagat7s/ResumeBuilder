@@ -99,11 +99,14 @@ if (addExp) {
         expBox.insertAdjacentHTML("beforeend", ` <br>
         <div id="expBox">
         About
-        <textarea class="flex h-30 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="category" placeholder="Field : I have improved and worked as .. and skills i earned... "  ></textarea>
+        <textarea class="flex h-30 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="about1" placeholder="Field : I have improved and worked as .. and skills i earned... "  ></textarea>
         Years you Worked
         <input class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="exp1" placeholder="Year : 1,2  or months : 0.5,0.6"  />
+        Name of Orgainization for which you worked
+            <input class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="org1" placeholder="company"  />
         From To (year)
         <input class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="fromto1" placeholder="2021-2022"  />
+
         Position
         <input class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="position1" placeholder="Web developer, android dev.."  />
         </div>`)
@@ -122,12 +125,14 @@ if (resumeForm) {
         })
         obj.experience = {
             first: {
-                category: obj.category || '',
+                about: obj.about || '',
+                org: obj.org || '',
                 fromto: obj.fromto || '',
                 exp: obj.exp || '',
                 position: obj.position || '',
             }, second: {
-                category: obj.category1 || '',
+                org: obj.org1 || '',
+                about: obj.about1 || '',
                 fromto: obj.fromto1 || '',
                 exp: obj.exp1 || '',
                 position: obj.position1 || '',

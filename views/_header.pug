@@ -14,7 +14,7 @@
 
 
 
-<header class="px-4 lg:px-6 h-14 flex items-center">
+<header class="px-4 lg:px-6 h-14 flex items-center sticky-top bg-black text-white rounded-lg">
     <a class="flex items-center justify-center" href="#">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
             <path d="m8 3 4 8 5-5 5 15H2L8 3z"></path>
@@ -26,7 +26,7 @@
 
         if user
             form.d-flex.gap-2
-                a.btn( id="logout" class="bg-black text-white") Logout
+                a.btn( id="logout" class="bg-blue-300 text-black") Logout
                 a.btn.btn-outline-primary(href="/profile") Profile
             //- <a class="text-sm font-medium hover:underline underline-offset-4" href="#">
             //-     |Features

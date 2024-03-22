@@ -3,65 +3,67 @@ block content
 
 
 
-    <div class="flex flex-col min-h-[100vh]">
+    <div class="flex flex-col ">
 
-        <main class="flex-1">
-            <section class="w-full py-12 md:py-24 lg:py-32 xl:py-48 ">
+        <main class="flex flex-col">
+            <section class="w-full py-12 md:py-24 lg:py-32 xl:py-48  bg-gradient-to-t from-gray-200 to-gray-400 text-white ">
                 <div class="container flex flex-col items-center justify-center space-y-4 px-4 md:px-6 text-center xl:space-y-10">
                     <div class="space-y-2" >
-                        <h1 class="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
+                        <h1 class="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none text-gray-700">
                             |Create a Professional Resume
                         </h1>
-                        <p class="mx-auto max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+                        <p class="mx-auto max-w-[600px] text-black md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed ">
                             |Stand out with beautifully designed templates. Easily customize and download your resume.
                         </p>
                     </div>
 
                 </div>
             </section>
-                <section class="w-full py-12 md:py-24 lg:py-32 xl:py-48">
+                <section class="w-full py-8 bg-gradient-to-t from-gray-100 to-gray-200">
 
 
 
                     <div class="space-y-2 ">
-                        <h1 class="text-3xl text-center font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
+                        <h1 class="text-3xl text-center text-gray-800 font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
                             |Choose Template for your resume
                         </h1>
-                        <p class="mx-auto max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">   
+                        <p class="mx-auto max-w-[600px] text-gray-800 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">   
                             |Stand out with beautifully designed templates. Easily customize and download your resume.
                         </p>
                     </div>
                         </div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 items-start">
+                <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-6 items-start lg:py-12 bg-gradient-to-t from-gray-300 to-gray-100 ease-in">
 
-                div(id='0', class="template-btn rounded-lg border bg-card text-card-foreground shadow-sm cursor-pointer",  data-v0-t="card",, data-user=`${user ? user._id : ''}`)
+                div(id='0', class="template-btn rounded-lg border bg-gray-400 text-black capitalize text-card-foreground shadow-sm cursor-pointer m-auto rounded-lg hover:scale-105 hover:bg-black hover:text-white ease-in ",  data-v0-t="card",, data-user=`${user ? user._id : ''}`)
                     div(class="p-0" data-user=`${user ? user._id : ''}` )
-                        img(src="/placeholder.svg" width="400" data-user=`${user ? user._id : ''}` height="225" alt="Image" class="aspect-16/9 object-cover")
+                        img(src="/templates/simple.png" width="400" data-user=`${user ? user._id : ''}` height="225" alt="Image" class="aspect-16/9 object-cover rounded-lg")
 
                     div(class="flex items-center p-4 " data-user=`${user ? user._id : ''}`)
-                        p(data-user=`${user ? user._id : ''}`  class="text-sm font-medium leading-none") Beach
+                        p(data-user=`${user ? user._id : ''}`  class="text-xl font-medium m-auto leading-none") Simple
                 
                 
-                div(id='0' class="template-btn rounded-lg border bg-card text-card-foreground shadow-sm cursor-pointer" data-v0-t="card")
+
+                
+                div(id='0' class="template-btn rounded-lg border bg-gray-400 text-black capitalize text-card-foreground shadow-sm cursor-pointer  m-auto rounded-lg hover:scale-105 hover:bg-black hover:text-white ease-in " data-v0-t="card")
                     div(class="p-0" data-user=`${user ? user._id : ''}` )
-                        img(src="/placeholder.svg" width="400" data-user=`${user ? user._id : ''}` height="225" alt="Image" class="aspect-16/9 object-cover")
+                        img(src="/templates/orgainized.png" width="400" data-user=`${user ? user._id : ''}` height="225" alt="Image" class="aspect-16/9 object-cover rounded-lg")
 
                     div(class="flex items-center p-4 " data-user=`${user ? user._id : ''}`)
-                        p(data-user=`${user ? user._id : ''}`  class="text-sm font-medium leading-none") Beach
+                        p(data-user=`${user ? user._id : ''}`  class="text-xl font-medium m-auto leading-none") Organized
                 
-                div(id='0' class="template-btn rounded-lg border bg-card text-card-foreground shadow-sm cursor-pointer" data-v0-t="card")
+                div(id='0' class="template-btn rounded-lg border bg-gray-400 text-black capitalize text-card-foreground shadow-sm cursor-pointer  m-auto rounded-lg hover:scale-105 hover:bg-black hover:text-white ease-in " data-v0-t="card")
                     div(class="p-0" data-user=`${user ? user._id : ''}` )
-                        img(src="/placeholder.svg" width="400" data-user=`${user ? user._id : ''}` height="225" alt="Image" class="aspect-16/9 object-cover")
+                        img(src="/templates/better.png" width="400" data-user=`${user ? user._id : ''}` height="225" alt="Image" class="aspect-16/9 object-cover rounded-lg")
 
                     div(class="flex items-center p-4 " data-user=`${user ? user._id : ''}`)
-                        p(data-user=`${user ? user._id : ''}`  class="text-sm font-medium leading-none") Beach
-                
-                div(id='0' class="template-btn rounded-lg border bg-card text-card-foreground shadow-sm cursor-pointer" data-v0-t="card")
+                        p(data-user=`${user ? user._id : ''}`  class="text-xl font-medium m-auto leading-none") Better
+
+                div(id='0' class="template-btn rounded-lg border bg-gray-400 text-black capitalize text-card-foreground shadow-sm cursor-pointer  m-auto rounded-lg hover:scale-105 hover:bg-black hover:text-white ease-in " data-v0-t="card")
                     div(class="p-0" data-user=`${user ? user._id : ''}` )
-                        img(src="/placeholder.svg" width="400" data-user=`${user ? user._id : ''}` height="225" alt="Image" class="aspect-16/9 object-cover")
+                        img(src="/templates/standard.png" width="400" data-user=`${user ? user._id : ''}` height="225" alt="Image" class="aspect-16/9 object-cover rounded-lg")
 
                     div(class="flex items-center p-4 " data-user=`${user ? user._id : ''}`)
-                        p(data-user=`${user ? user._id : ''}`  class="text-sm font-medium leading-none") Beach
+                        p(data-user=`${user ? user._id : ''}`  class="text-xl font-medium m-auto leading-none") Standard
                 
                 </div>
                 </section>

@@ -23,9 +23,9 @@ const generatePdf = (user) => {
   let templates = JSON.parse(data)
 
   // console.log(templates[0].data);
-  html = templates[2].data;
-  let height = templates[2].height
-  let width = templates[2].width
+  html = templates[3].data;
+  let height = templates[3].height
+  let width = templates[3].width
 
   var options = {
     format: "A4",
@@ -53,15 +53,18 @@ const generatePdf = (user) => {
       email: user.email,
       mobile: user.mobile,
       about: user.about,
-      skills: [...user.skills].join(" ")
+      skills: [...user.skills].join(" "),
+      education: { ...user.education },
+      experience: { ...user.experience[0] }
     }
   ];
+  console.log("user is ***", users);
   var document = {
     html: html,
     data: {
       users: users,
     },
-    path: "./output.pdf",
+    path: `./Public/files/${user._id}-output.pdf`,
     type: "",
   };
 
@@ -121,10 +124,12 @@ exports.createResume = runAsync(async (req, res, next) => {
 
     return next(new appError("please complete the details page first ", 400))
   }
+
+  console.log("user ***** is ", req.user._id);
   const belongs = await Resume.find({ user: req.user._id })
   console.log("belongs", belongs);
-  if (belongs) {
-    console.log(belongs);
+  if (belongs.length) {
+    console.log("came inside", belongs);
     // console.log("id is ",belongs);
     const insertedFurther = await Resume.findByIdAndUpdate(belongs[0]._id, {
       about,

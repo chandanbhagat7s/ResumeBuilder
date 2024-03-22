@@ -7,6 +7,7 @@ const { default: mongoose } = require("mongoose")
 const globalerrorHandler = require("./utils/globalerrorHandler")
 const userRouter = require("./Routes/userRoutes")
 const resumeRouter = require("./Routes/resumeRoutes")
+const adminRouter = require("./Routes/adminRoutes")
 const viewRouter = require("./Routes/viewRouter")
 const morgan = require("morgan")
 const cookieParser = require("cookie-parser")
@@ -44,6 +45,7 @@ app.use(cookieParser())
 
 app.use('/', viewRouter)
 app.use('/api/v1/user', userRouter)
+app.use('/api/v1/admin', adminRouter)
 app.use('/api/v1/resume', resumeRouter)
 
 
