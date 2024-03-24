@@ -3,6 +3,9 @@ const User = require('../Models/User');
 const runAsync = require('../utils/catchAsync');
 const appError = require('../utils/appError');
 
+const sharp = require('sharp')
+const multer = require('multer')
+
 const createTokenSendRes = (id, res, statusCode, data) => {
 
     let token = jwt.sign({ id }, process.env.JWT_SECRET_KEY, {
@@ -47,6 +50,59 @@ exports.logout = function (req, res) {
 
     res.status(200).json({ status: true })
 }
+
+
+// upload the image
+
+const multerStorage = multer.memoryStorage();
+
+
+
+// create filterObject
+const multerFilter = (req, file, cb) => {
+    if (file.mimetype.startsWith('image')) {
+
+        cb(null, true)
+    } else {
+        cb(new appError('please upload only image files', 400), false)
+
+    }
+}
+
+exports.resizeImage = runAsync(async (req, res, next) => {
+    console.log(req.body);
+    console.log("file is ", req.file);
+    if (!req.file) {
+        return next(new appError("please upload a file", 400))
+    }
+
+
+    // cover image
+    req.body.coverImage = `${req.body.userName}-${req.body.mobile}-cover.jpg`
+    await sharp(req.file.buffer).toFormat('jpeg').toFile(`Public/user/${req.body.coverImage}`)
+
+
+
+
+
+    next()
+
+
+})
+
+
+// destination(for saving files) of multer package 
+const uploads = multer(
+    {
+        storage: multerStorage,
+        fileFilter: multerFilter
+    }
+)
+
+exports.uploadImages = uploads.single('coverImage')
+
+
+
 exports.signUp = runAsync(async (req, res, next) => {
     console.log(req.body);
     const { userName, email, password, mobile } = req.body;
@@ -79,7 +135,9 @@ exports.getUser = runAsync(async (req, res, next) => {
 
 })
 exports.login = runAsync(async (req, res, next) => {
+    console.log(req);
     const { email, password } = req.body;
+
 
     if (!email || !password) {
         return next(new appError("please enter credential for get into in ", 400));

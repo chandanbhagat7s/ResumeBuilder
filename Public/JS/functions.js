@@ -7,10 +7,9 @@ export const login = async (email, password) => {
     try {
 
         const res = await axios.post('http://127.0.0.1:3001/api/v1/user/login', { email, password })
-        console.log(res);
         if (res.data.status) {
 
-            showAlert(res.data.status, "you are succesfully logged in !")
+            showAlert("success", "you are succesfully logged in !")
             window.setTimeout(() => {
                 location.assign('/');
             }, 1500)
@@ -18,7 +17,26 @@ export const login = async (email, password) => {
 
 
     } catch (err) {
-        console.log(err);
+        showAlert('danger', err.response.data.msg)
+    }
+};
+
+
+
+export const updateProfileStatus = async (data) => {
+    try {
+
+        const res = await axios.patch('http://127.0.0.1:3001/api/v1/resume/updateProfile', { data })
+        if (res.data.status) {
+
+            showAlert("success", res.data.message)
+            // window.setTimeout(() => {
+            //     location.assign('/');
+            // }, 1500)
+        }
+
+
+    } catch (err) {
         showAlert('danger', err.response.data.msg)
     }
 };
@@ -27,7 +45,6 @@ export const login = async (email, password) => {
 export const logoutUser = async (data) => {
 
     try {
-        console.log("came");
 
         const res = await axios.get('http://127.0.0.1:3001/api/v1/user/logout')
         console.log(res);
@@ -40,7 +57,6 @@ export const logoutUser = async (data) => {
 
 
     } catch (err) {
-        console.log(err);
         showAlert('danger', err.response.data.msg)
     }
 };
@@ -50,7 +66,6 @@ export const addDetails = async (data) => {
         console.log("came");
 
         const res = await axios.post('http://127.0.0.1:3001/api/v1/user/addDetails', { ...data })
-        console.log(res);
         if (res.data.status) {
             showAlert('success', "Data is Saved  !")
             window.setTimeout(() => {
@@ -77,11 +92,12 @@ export const ExtraInformationResumeVariable = async (data) => {
 
 
         const res = await axios.post('http://127.0.0.1:3001/api/v1/resume/', { ...data })
-        console.log("****&&&*****", res);
+        console.log(res);
         if (res.data.status) {
             showAlert("success", "Data is Saved ,Creating your resume ")
             window.setTimeout(() => {
                 location.assign(`/files/${res.data.data._id}-output.pdf`);
+
             }, 1500)
         }
 
@@ -91,15 +107,13 @@ export const ExtraInformationResumeVariable = async (data) => {
         showAlert('warning', err.response.data.msg)
     }
 };
-export const signup = async (name, email, password, mobile, cnfPassword) => {
+export const signup = async (data) => {
     try {
+        console.log("data is ", data);
 
 
-        if (password != cnfPassword) {
-            return showAlert('danger', "please check password and cnfPassword!")
-        }
 
-        const res = await axios.post('http://127.0.0.1:3001/api/v1/user/signup', { userName: name, email, password, mobile })
+        const res = await axios.post('http://127.0.0.1:3001/api/v1/user/signup', data)
         console.log(res);
         if (res.data.status) {
             showAlert("success", "you are succesfully logged in !")
@@ -111,7 +125,7 @@ export const signup = async (name, email, password, mobile, cnfPassword) => {
 
     } catch (err) {
         console.log(err);
-        showAlert('danger', err.response.data.msg)
+        showAlert('danger', err?.response?.data?.msg)
     }
 };
 

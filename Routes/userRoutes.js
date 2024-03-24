@@ -1,5 +1,5 @@
 const express = require("express");
-const { signUp, login, logout, getUser } = require("../Controller/authController");
+const { signUp, login, logout, getUser, resizeImage, uploadImages } = require("../Controller/authController");
 const { addDetailse } = require("../Controller/usercontroller");
 const { getVerified } = require("../Middleware/protect");
 
@@ -8,7 +8,7 @@ const Router = express.Router()
 
 
 Router.post('/login', login)
-Router.post('/signup', signUp)
+Router.post('/signup', uploadImages, resizeImage, signUp)
 
 Router.use(getVerified).get('/logout', logout)
 Router.get('/getUser', getUser)

@@ -74,7 +74,7 @@ exports.isLoggedIn = async (req, res, next) => {
             const decode = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRET_KEY)
             const freshUser = await User.findById(decode.id)
 
-            console.log("fresh user", freshUser);
+
             if (!freshUser) {
                 return next()
             }
@@ -85,7 +85,7 @@ exports.isLoggedIn = async (req, res, next) => {
             }
 
             // future use 
-            // req.user = freshUser 
+            req.user = freshUser
             res.locals.user = freshUser;
 
 

@@ -1,3 +1,4 @@
+const Resume = require("../Models/Resume")
 const runAsync = require("../utils/catchAsync")
 
 
@@ -37,6 +38,21 @@ exports.login = runAsync(async (req, res, next) => {
     })
 })
 
+exports.profile = runAsync(async (req, res, next) => {
+    // request for all the tour 
+    // const tours = await Tour.find()
+    // create template 
+    // render the data on site
+    let data = await Resume.find({ user: req.user._id })
+    console.log("data fetched is ", data);
+    // console.log("***USER DAT AIS ", req.user);
+
+    res.status(200).render('profile', {
+        title: 'ME | Profile',
+        data: data[0]
+    })
+})
+
 
 exports.resumeCompletionForm = runAsync(async (req, res, next) => {
     // request for all the tour 
@@ -50,13 +66,13 @@ exports.resumeCompletionForm = runAsync(async (req, res, next) => {
     })
 })
 exports.others = runAsync(async (req, res, next) => {
-    // request for all the tour 
-    // const tours = await Tour.find()
-    // create template 
-    // render the data on site
+    let data = await Resume.find({ user: req.user._id })
+    console.log("data fetched is ", data);
+
 
     res.status(200).render('other', {
-        title: 'Login',
+        title: 'Fill Extra | ..😊',
+        data: data[0]
         //  tours
     })
 })

@@ -11980,7 +11980,7 @@ var showAlert = exports.showAlert = function showAlert(type, msg) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.signup = exports.makeTemplate = exports.logoutUser = exports.login = exports.addDetails = exports.ExtraInformationResumeVariable = void 0;
+exports.updateProfileStatus = exports.signup = exports.makeTemplate = exports.logoutUser = exports.login = exports.addDetails = exports.ExtraInformationResumeVariable = void 0;
 var _axios = _interopRequireDefault(require("axios"));
 var _alerts = require("./alerts");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -12007,118 +12007,113 @@ var login = exports.login = /*#__PURE__*/function () {
           });
         case 3:
           _res = _context.sent;
-          console.log(_res);
           if (_res.data.status) {
-            (0, _alerts.showAlert)(_res.data.status, "you are succesfully logged in !");
+            (0, _alerts.showAlert)("success", "you are succesfully logged in !");
             window.setTimeout(function () {
               location.assign('/');
             }, 1500);
           }
-          _context.next = 12;
+          _context.next = 10;
           break;
-        case 8:
-          _context.prev = 8;
+        case 7:
+          _context.prev = 7;
           _context.t0 = _context["catch"](0);
-          console.log(_context.t0);
           (0, _alerts.showAlert)('danger', _context.t0.response.data.msg);
-        case 12:
+        case 10:
         case "end":
           return _context.stop();
       }
-    }, _callee, null, [[0, 8]]);
+    }, _callee, null, [[0, 7]]);
   }));
   return function login(_x, _x2) {
     return _ref.apply(this, arguments);
   };
 }();
-var logoutUser = exports.logoutUser = /*#__PURE__*/function () {
+var updateProfileStatus = exports.updateProfileStatus = /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(data) {
     var _res2;
     return _regeneratorRuntime().wrap(function _callee2$(_context2) {
       while (1) switch (_context2.prev = _context2.next) {
         case 0:
           _context2.prev = 0;
-          console.log("came");
-          _context2.next = 4;
-          return _axios.default.get('http://127.0.0.1:3001/api/v1/user/logout');
-        case 4:
+          _context2.next = 3;
+          return _axios.default.patch('http://127.0.0.1:3001/api/v1/resume/updateProfile', {
+            data: data
+          });
+        case 3:
           _res2 = _context2.sent;
-          console.log(_res2);
           if (_res2.data.status) {
-            (0, _alerts.showAlert)('success', "logout Successfull !");
-            window.setTimeout(function () {
-              location.assign('/');
-            }, 400);
+            (0, _alerts.showAlert)("success", _res2.data.message);
+            // window.setTimeout(() => {
+            //     location.assign('/');
+            // }, 1500)
           }
-          _context2.next = 13;
+          _context2.next = 10;
           break;
-        case 9:
-          _context2.prev = 9;
+        case 7:
+          _context2.prev = 7;
           _context2.t0 = _context2["catch"](0);
-          console.log(_context2.t0);
           (0, _alerts.showAlert)('danger', _context2.t0.response.data.msg);
-        case 13:
+        case 10:
         case "end":
           return _context2.stop();
       }
-    }, _callee2, null, [[0, 9]]);
+    }, _callee2, null, [[0, 7]]);
   }));
-  return function logoutUser(_x3) {
+  return function updateProfileStatus(_x3) {
     return _ref2.apply(this, arguments);
   };
 }();
-var addDetails = exports.addDetails = /*#__PURE__*/function () {
+var logoutUser = exports.logoutUser = /*#__PURE__*/function () {
   var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(data) {
     var _res3;
     return _regeneratorRuntime().wrap(function _callee3$(_context3) {
       while (1) switch (_context3.prev = _context3.next) {
         case 0:
           _context3.prev = 0;
-          console.log("came");
-          _context3.next = 4;
-          return _axios.default.post('http://127.0.0.1:3001/api/v1/user/addDetails', _objectSpread({}, data));
-        case 4:
+          _context3.next = 3;
+          return _axios.default.get('http://127.0.0.1:3001/api/v1/user/logout');
+        case 3:
           _res3 = _context3.sent;
           console.log(_res3);
           if (_res3.data.status) {
-            (0, _alerts.showAlert)('success', "Data is Saved  !");
+            (0, _alerts.showAlert)('success', "logout Successfull !");
             window.setTimeout(function () {
               location.assign('/');
-            }, 1500);
+            }, 400);
           }
-          _context3.next = 13;
+          _context3.next = 11;
           break;
-        case 9:
-          _context3.prev = 9;
+        case 8:
+          _context3.prev = 8;
           _context3.t0 = _context3["catch"](0);
-          console.log(_context3.t0);
           (0, _alerts.showAlert)('danger', _context3.t0.response.data.msg);
-        case 13:
+        case 11:
         case "end":
           return _context3.stop();
       }
-    }, _callee3, null, [[0, 9]]);
+    }, _callee3, null, [[0, 8]]);
   }));
-  return function addDetails(_x4) {
+  return function logoutUser(_x4) {
     return _ref3.apply(this, arguments);
   };
 }();
-var ExtraInformationResumeVariable = exports.ExtraInformationResumeVariable = /*#__PURE__*/function () {
+var addDetails = exports.addDetails = /*#__PURE__*/function () {
   var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(data) {
     var _res4;
     return _regeneratorRuntime().wrap(function _callee4$(_context4) {
       while (1) switch (_context4.prev = _context4.next) {
         case 0:
           _context4.prev = 0;
-          _context4.next = 3;
-          return _axios.default.post('http://127.0.0.1:3001/api/v1/resume/', _objectSpread({}, data));
-        case 3:
+          console.log("came");
+          _context4.next = 4;
+          return _axios.default.post('http://127.0.0.1:3001/api/v1/user/addDetails', _objectSpread({}, data));
+        case 4:
           _res4 = _context4.sent;
-          console.log("****&&&*****", _res4);
           if (_res4.data.status) {
-            (0, _alerts.showAlert)("success", "Data is Saved ,Creating your resume ");
+            (0, _alerts.showAlert)('success', "Data is Saved  !");
             window.setTimeout(function () {
-              location.assign("/files/".concat(_res4.data.data._id, "-output.pdf"));
+              location.assign('/');
             }, 1500);
           }
           _context4.next = 12;
@@ -12127,88 +12122,113 @@ var ExtraInformationResumeVariable = exports.ExtraInformationResumeVariable = /*
           _context4.prev = 8;
           _context4.t0 = _context4["catch"](0);
           console.log(_context4.t0);
-          (0, _alerts.showAlert)('warning', _context4.t0.response.data.msg);
+          (0, _alerts.showAlert)('danger', _context4.t0.response.data.msg);
         case 12:
         case "end":
           return _context4.stop();
       }
     }, _callee4, null, [[0, 8]]);
   }));
-  return function ExtraInformationResumeVariable(_x5) {
+  return function addDetails(_x5) {
     return _ref4.apply(this, arguments);
   };
 }();
-var signup = exports.signup = /*#__PURE__*/function () {
-  var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(name, email, password, mobile, cnfPassword) {
+var ExtraInformationResumeVariable = exports.ExtraInformationResumeVariable = /*#__PURE__*/function () {
+  var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(data) {
     var _res5;
     return _regeneratorRuntime().wrap(function _callee5$(_context5) {
       while (1) switch (_context5.prev = _context5.next) {
         case 0:
           _context5.prev = 0;
-          if (!(password != cnfPassword)) {
-            _context5.next = 3;
-            break;
-          }
-          return _context5.abrupt("return", (0, _alerts.showAlert)('danger', "please check password and cnfPassword!"));
+          _context5.next = 3;
+          return _axios.default.post('http://127.0.0.1:3001/api/v1/resume/', _objectSpread({}, data));
         case 3:
-          _context5.next = 5;
-          return _axios.default.post('http://127.0.0.1:3001/api/v1/user/signup', {
-            userName: name,
-            email: email,
-            password: password,
-            mobile: mobile
-          });
-        case 5:
           _res5 = _context5.sent;
           console.log(_res5);
           if (_res5.data.status) {
+            (0, _alerts.showAlert)("success", "Data is Saved ,Creating your resume ");
+            window.setTimeout(function () {
+              location.assign("/files/".concat(_res5.data.data._id, "-output.pdf"));
+            }, 1500);
+          }
+          _context5.next = 12;
+          break;
+        case 8:
+          _context5.prev = 8;
+          _context5.t0 = _context5["catch"](0);
+          console.log(_context5.t0);
+          (0, _alerts.showAlert)('warning', _context5.t0.response.data.msg);
+        case 12:
+        case "end":
+          return _context5.stop();
+      }
+    }, _callee5, null, [[0, 8]]);
+  }));
+  return function ExtraInformationResumeVariable(_x6) {
+    return _ref5.apply(this, arguments);
+  };
+}();
+var signup = exports.signup = /*#__PURE__*/function () {
+  var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(data) {
+    var _res6, _err$response;
+    return _regeneratorRuntime().wrap(function _callee6$(_context6) {
+      while (1) switch (_context6.prev = _context6.next) {
+        case 0:
+          _context6.prev = 0;
+          console.log("data is ", data);
+          _context6.next = 4;
+          return _axios.default.post('http://127.0.0.1:3001/api/v1/user/signup', data);
+        case 4:
+          _res6 = _context6.sent;
+          console.log(_res6);
+          if (_res6.data.status) {
             (0, _alerts.showAlert)("success", "you are succesfully logged in !");
             window.setTimeout(function () {
               location.assign('/');
             }, 1500);
           }
-          _context5.next = 14;
+          _context6.next = 13;
           break;
-        case 10:
-          _context5.prev = 10;
-          _context5.t0 = _context5["catch"](0);
-          console.log(_context5.t0);
-          (0, _alerts.showAlert)('danger', _context5.t0.response.data.msg);
-        case 14:
+        case 9:
+          _context6.prev = 9;
+          _context6.t0 = _context6["catch"](0);
+          console.log(_context6.t0);
+          (0, _alerts.showAlert)('danger', _context6.t0 === null || _context6.t0 === void 0 || (_err$response = _context6.t0.response) === null || _err$response === void 0 || (_err$response = _err$response.data) === null || _err$response === void 0 ? void 0 : _err$response.msg);
+        case 13:
         case "end":
-          return _context5.stop();
+          return _context6.stop();
       }
-    }, _callee5, null, [[0, 10]]);
+    }, _callee6, null, [[0, 9]]);
   }));
-  return function signup(_x6, _x7, _x8, _x9, _x10) {
-    return _ref5.apply(this, arguments);
+  return function signup(_x7) {
+    return _ref6.apply(this, arguments);
   };
 }();
 var makeTemplate = exports.makeTemplate = /*#__PURE__*/function () {
-  var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(tmplateName, data) {
-    var _res6;
-    return _regeneratorRuntime().wrap(function _callee6$(_context6) {
-      while (1) switch (_context6.prev = _context6.next) {
+  var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(tmplateName, data) {
+    var _res7;
+    return _regeneratorRuntime().wrap(function _callee7$(_context7) {
+      while (1) switch (_context7.prev = _context7.next) {
         case 0:
-          _context6.prev = 0;
-          _context6.next = 3;
+          _context7.prev = 0;
+          _context7.next = 3;
           return _axios.default.post('http://127.0.0.1:3001/api/v1/resume/', _objectSpread({}, data));
         case 3:
-          _res6 = _context6.sent;
-          console.log("res is ", _res6);
-          if (_res6.response.data) {
+          _res7 = _context7.sent;
+          console.log("res is ", _res7);
+          if (_res7.response.data) {
             (0, _alerts.showAlert)("success", "resume is created");
             window.setTimeout(function () {
               location.assign("/");
             }, 1500);
           }
-          _context6.next = 12;
+          _context7.next = 12;
           break;
         case 8:
-          _context6.prev = 8;
-          _context6.t0 = _context6["catch"](0);
-          console.log("err is ", _context6.t0);
-          if (_context6.t0.response.data.msg.includes(' complete the details page first')) {
+          _context7.prev = 8;
+          _context7.t0 = _context7["catch"](0);
+          console.log("err is ", _context7.t0);
+          if (_context7.t0.response.data.msg.includes(' complete the details page first')) {
             location.assign('/completeDetails');
           }
           // showAlert('danger', err.response.data.msg)
@@ -12221,12 +12241,12 @@ var makeTemplate = exports.makeTemplate = /*#__PURE__*/function () {
           }
         case 13:
         case "end":
-          return _context6.stop();
+          return _context7.stop();
       }
-    }, _callee6, null, [[0, 8]]);
+    }, _callee7, null, [[0, 8]]);
   }));
-  return function makeTemplate(_x11, _x12) {
-    return _ref6.apply(this, arguments);
+  return function makeTemplate(_x8, _x9) {
+    return _ref7.apply(this, arguments);
   };
 }();
 },{"axios":"../../node_modules/axios/index.js","./alerts":"alerts.js"}],"index.js":[function(require,module,exports) {
@@ -12373,7 +12393,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 var addExp = document.getElementById("addExp");
 var expBox = document.getElementById("expBox");
 var logout = document.getElementById("logout");
-var extraInfo = document.getElementById("extraInfo");
+var profileUpdate = document.getElementById("profileUpdate");
 var logins = document.querySelector('#loginfrom');
 var ExtraInfo = document.querySelector('#ExtraInfo');
 var signIn = document.querySelector('#signinForm');
@@ -12402,15 +12422,14 @@ if (templatesTrackBtn) {
               return _axios.default.get("http://127.0.0.1:3001/api/v1/user/getUser");
             case 4:
               userData = _context.sent;
-              console.log("requested", userData);
               if (userData) {
-                _context.next = 8;
+                _context.next = 7;
                 break;
               }
               return _context.abrupt("return", (0, _alerts.showAlert)("warning", "login or signup first for the functionality"));
-            case 8:
+            case 7:
               if (userData.data.data.data) {
-                _context.next = 12;
+                _context.next = 11;
                 break;
               }
               (0, _alerts.showAlert)("info", "please complete the details");
@@ -12418,14 +12437,14 @@ if (templatesTrackBtn) {
                 location.assign('/completeDetails');
               }, [1500]);
               return _context.abrupt("return");
-            case 12:
-              console.log("running");
+            case 11:
               (0, _alerts.showAlert)("success", "please wait REDIRCTING");
               setTimeout(function () {
                 location.assign('/others');
-              }, [1500]);
-              (0, _functions.ExtraInformationResumeVariable)();
-            case 16:
+              }, [500]);
+
+              // ExtraInformationResumeVariable()
+            case 13:
             case "end":
               return _context.stop();
           }
@@ -12435,6 +12454,43 @@ if (templatesTrackBtn) {
         return _ref.apply(this, arguments);
       };
     }());
+  });
+}
+if (profileUpdate) {
+  // console.log(user);
+  profileUpdate.addEventListener("submit", function (e) {
+    (0, _alerts.showAlert)("success", "Submitting your information");
+    e.preventDefault();
+    console.log(e);
+    var obj = {};
+    Array.from(e.target).map(function (el) {
+      if (el.id) {
+        obj[el.id] = el.value;
+      }
+    });
+    console.log(obj);
+    obj.skills = obj.skill.split(",");
+    // obj.hobbies = obj.hobbies.split(",")
+    // obj.urls = obj.links.split(",")
+    obj.experience = {
+      first: {
+        about: obj.about1 || '',
+        org: obj.org1 || '',
+        fromto: obj.fromto1 || '',
+        exp: obj.exp1 || '',
+        position: obj.position1 || ''
+      },
+      second: {
+        org: obj.org2 || '',
+        about: obj.about2 || '',
+        fromto: obj.fromto2 || '',
+        exp: obj.exp2 || '',
+        position: obj.position2 || ''
+      }
+    };
+    console.log("obj is ", obj);
+    console.log("Called");
+    (0, _functions.updateProfileStatus)(obj);
   });
 }
 if (ExtraInfo) {
@@ -12449,11 +12505,12 @@ if (ExtraInfo) {
         obj[el.id] = el.value;
       }
     });
-    obj.skills = obj.skills.split(",");
-    obj.hobbies = obj.hobbies.split(",");
-    obj.urls = obj.links.split(",");
+    // obj.skills = obj.skills.split(",")
+    // obj.hobbies = obj.hobbies.split(",")
+    // obj.urls = obj.links.split(",")
     console.log("obj is ", obj);
     console.log("Called");
+    obj.skills = obj.skill.split(',');
     (0, _functions.ExtraInformationResumeVariable)(obj);
   });
 }
@@ -12506,9 +12563,9 @@ if (resumeForm) {
         passingYear: obj.passing12
       },
       degree: {
-        collegeName: obj.collegeName,
-        universityName: obj.universityName,
-        passingYear: obj.yearOfPassingCollege
+        collegeName: obj.collegeName || '',
+        universityName: obj.universityName || '',
+        passingYear: obj.yearOfPassingCollege || ''
       }
     };
     obj.skills = obj.skills.split(',');
@@ -12534,18 +12591,38 @@ if (signIn) {
   signIn.addEventListener('submit', function (e) {
     e.preventDefault();
     console.log("came signin");
+    console.log(e);
     var obj = {};
     Array.from(e.target).map(function (el) {
+      if (el.id == 'coverImage') {
+        obj[el.id] = el.files[0];
+        return;
+      }
       if (el.id) {
         obj[el.id] = el.value;
       }
     });
-    console.log(obj);
+    if (obj.password.length < 6) {
+      return (0, _alerts.showAlert)('danger', "Password is to short ");
+    }
+    if (obj.password.length > 16) {
+      return (0, _alerts.showAlert)('danger', "Password is to long ");
+    }
+    if (obj.password != obj.confirmPassword) {
+      return (0, _alerts.showAlert)('danger', "please check password and cnfPassword!");
+    }
+    var form = new FormData();
+    for (var key in obj) {
+      var value = obj[key];
+      console.log("Key: ".concat(key, ", Value: ").concat(value), value);
+      form.append(key, obj[key]);
+    }
+
     // console.log(email, password, cnfPassword, mobile);
     // if (!name || !email || !mobile || !password || !cnfPassword) {
     //     return alertt('danger', 'please provide all the details')
     // }
-    (0, _functions.signup)(obj.userName, obj.email, obj.password, obj.mobile, obj.confirmPassword);
+    (0, _functions.signup)(form);
   });
 }
 },{"core-js/modules/es6.array.copy-within.js":"../../node_modules/core-js/modules/es6.array.copy-within.js","core-js/modules/es6.array.fill.js":"../../node_modules/core-js/modules/es6.array.fill.js","core-js/modules/es6.array.filter.js":"../../node_modules/core-js/modules/es6.array.filter.js","core-js/modules/es6.array.find.js":"../../node_modules/core-js/modules/es6.array.find.js","core-js/modules/es6.array.find-index.js":"../../node_modules/core-js/modules/es6.array.find-index.js","core-js/modules/es7.array.flat-map.js":"../../node_modules/core-js/modules/es7.array.flat-map.js","core-js/modules/es6.array.from.js":"../../node_modules/core-js/modules/es6.array.from.js","core-js/modules/es7.array.includes.js":"../../node_modules/core-js/modules/es7.array.includes.js","core-js/modules/es6.array.iterator.js":"../../node_modules/core-js/modules/es6.array.iterator.js","core-js/modules/es6.array.map.js":"../../node_modules/core-js/modules/es6.array.map.js","core-js/modules/es6.array.of.js":"../../node_modules/core-js/modules/es6.array.of.js","core-js/modules/es6.array.slice.js":"../../node_modules/core-js/modules/es6.array.slice.js","core-js/modules/es6.array.species.js":"../../node_modules/core-js/modules/es6.array.species.js","core-js/modules/es6.date.to-primitive.js":"../../node_modules/core-js/modules/es6.date.to-primitive.js","core-js/modules/es6.function.has-instance.js":"../../node_modules/core-js/modules/es6.function.has-instance.js","core-js/modules/es6.function.name.js":"../../node_modules/core-js/modules/es6.function.name.js","core-js/modules/es6.map.js":"../../node_modules/core-js/modules/es6.map.js","core-js/modules/es6.math.acosh.js":"../../node_modules/core-js/modules/es6.math.acosh.js","core-js/modules/es6.math.asinh.js":"../../node_modules/core-js/modules/es6.math.asinh.js","core-js/modules/es6.math.atanh.js":"../../node_modules/core-js/modules/es6.math.atanh.js","core-js/modules/es6.math.cbrt.js":"../../node_modules/core-js/modules/es6.math.cbrt.js","core-js/modules/es6.math.clz32.js":"../../node_modules/core-js/modules/es6.math.clz32.js","core-js/modules/es6.math.cosh.js":"../../node_modules/core-js/modules/es6.math.cosh.js","core-js/modules/es6.math.expm1.js":"../../node_modules/core-js/modules/es6.math.expm1.js","core-js/modules/es6.math.fround.js":"../../node_modules/core-js/modules/es6.math.fround.js","core-js/modules/es6.math.hypot.js":"../../node_modules/core-js/modules/es6.math.hypot.js","core-js/modules/es6.math.imul.js":"../../node_modules/core-js/modules/es6.math.imul.js","core-js/modules/es6.math.log1p.js":"../../node_modules/core-js/modules/es6.math.log1p.js","core-js/modules/es6.math.log10.js":"../../node_modules/core-js/modules/es6.math.log10.js","core-js/modules/es6.math.log2.js":"../../node_modules/core-js/modules/es6.math.log2.js","core-js/modules/es6.math.sign.js":"../../node_modules/core-js/modules/es6.math.sign.js","core-js/modules/es6.math.sinh.js":"../../node_modules/core-js/modules/es6.math.sinh.js","core-js/modules/es6.math.tanh.js":"../../node_modules/core-js/modules/es6.math.tanh.js","core-js/modules/es6.math.trunc.js":"../../node_modules/core-js/modules/es6.math.trunc.js","core-js/modules/es6.number.constructor.js":"../../node_modules/core-js/modules/es6.number.constructor.js","core-js/modules/es6.number.epsilon.js":"../../node_modules/core-js/modules/es6.number.epsilon.js","core-js/modules/es6.number.is-finite.js":"../../node_modules/core-js/modules/es6.number.is-finite.js","core-js/modules/es6.number.is-integer.js":"../../node_modules/core-js/modules/es6.number.is-integer.js","core-js/modules/es6.number.is-nan.js":"../../node_modules/core-js/modules/es6.number.is-nan.js","core-js/modules/es6.number.is-safe-integer.js":"../../node_modules/core-js/modules/es6.number.is-safe-integer.js","core-js/modules/es6.number.max-safe-integer.js":"../../node_modules/core-js/modules/es6.number.max-safe-integer.js","core-js/modules/es6.number.min-safe-integer.js":"../../node_modules/core-js/modules/es6.number.min-safe-integer.js","core-js/modules/es6.number.parse-float.js":"../../node_modules/core-js/modules/es6.number.parse-float.js","core-js/modules/es6.number.parse-int.js":"../../node_modules/core-js/modules/es6.number.parse-int.js","core-js/modules/es6.object.assign.js":"../../node_modules/core-js/modules/es6.object.assign.js","core-js/modules/es7.object.define-getter.js":"../../node_modules/core-js/modules/es7.object.define-getter.js","core-js/modules/es7.object.define-setter.js":"../../node_modules/core-js/modules/es7.object.define-setter.js","core-js/modules/es7.object.entries.js":"../../node_modules/core-js/modules/es7.object.entries.js","core-js/modules/es6.object.freeze.js":"../../node_modules/core-js/modules/es6.object.freeze.js","core-js/modules/es6.object.get-own-property-descriptor.js":"../../node_modules/core-js/modules/es6.object.get-own-property-descriptor.js","core-js/modules/es7.object.get-own-property-descriptors.js":"../../node_modules/core-js/modules/es7.object.get-own-property-descriptors.js","core-js/modules/es6.object.get-own-property-names.js":"../../node_modules/core-js/modules/es6.object.get-own-property-names.js","core-js/modules/es6.object.get-prototype-of.js":"../../node_modules/core-js/modules/es6.object.get-prototype-of.js","core-js/modules/es7.object.lookup-getter.js":"../../node_modules/core-js/modules/es7.object.lookup-getter.js","core-js/modules/es7.object.lookup-setter.js":"../../node_modules/core-js/modules/es7.object.lookup-setter.js","core-js/modules/es6.object.prevent-extensions.js":"../../node_modules/core-js/modules/es6.object.prevent-extensions.js","core-js/modules/es6.object.to-string.js":"../../node_modules/core-js/modules/es6.object.to-string.js","core-js/modules/es6.object.is.js":"../../node_modules/core-js/modules/es6.object.is.js","core-js/modules/es6.object.is-frozen.js":"../../node_modules/core-js/modules/es6.object.is-frozen.js","core-js/modules/es6.object.is-sealed.js":"../../node_modules/core-js/modules/es6.object.is-sealed.js","core-js/modules/es6.object.is-extensible.js":"../../node_modules/core-js/modules/es6.object.is-extensible.js","core-js/modules/es6.object.keys.js":"../../node_modules/core-js/modules/es6.object.keys.js","core-js/modules/es6.object.seal.js":"../../node_modules/core-js/modules/es6.object.seal.js","core-js/modules/es7.object.values.js":"../../node_modules/core-js/modules/es7.object.values.js","core-js/modules/es6.promise.js":"../../node_modules/core-js/modules/es6.promise.js","core-js/modules/es7.promise.finally.js":"../../node_modules/core-js/modules/es7.promise.finally.js","core-js/modules/es6.reflect.apply.js":"../../node_modules/core-js/modules/es6.reflect.apply.js","core-js/modules/es6.reflect.construct.js":"../../node_modules/core-js/modules/es6.reflect.construct.js","core-js/modules/es6.reflect.define-property.js":"../../node_modules/core-js/modules/es6.reflect.define-property.js","core-js/modules/es6.reflect.delete-property.js":"../../node_modules/core-js/modules/es6.reflect.delete-property.js","core-js/modules/es6.reflect.get.js":"../../node_modules/core-js/modules/es6.reflect.get.js","core-js/modules/es6.reflect.get-own-property-descriptor.js":"../../node_modules/core-js/modules/es6.reflect.get-own-property-descriptor.js","core-js/modules/es6.reflect.get-prototype-of.js":"../../node_modules/core-js/modules/es6.reflect.get-prototype-of.js","core-js/modules/es6.reflect.has.js":"../../node_modules/core-js/modules/es6.reflect.has.js","core-js/modules/es6.reflect.is-extensible.js":"../../node_modules/core-js/modules/es6.reflect.is-extensible.js","core-js/modules/es6.reflect.own-keys.js":"../../node_modules/core-js/modules/es6.reflect.own-keys.js","core-js/modules/es6.reflect.prevent-extensions.js":"../../node_modules/core-js/modules/es6.reflect.prevent-extensions.js","core-js/modules/es6.reflect.set.js":"../../node_modules/core-js/modules/es6.reflect.set.js","core-js/modules/es6.reflect.set-prototype-of.js":"../../node_modules/core-js/modules/es6.reflect.set-prototype-of.js","core-js/modules/es6.regexp.constructor.js":"../../node_modules/core-js/modules/es6.regexp.constructor.js","core-js/modules/es6.regexp.flags.js":"../../node_modules/core-js/modules/es6.regexp.flags.js","core-js/modules/es6.regexp.match.js":"../../node_modules/core-js/modules/es6.regexp.match.js","core-js/modules/es6.regexp.replace.js":"../../node_modules/core-js/modules/es6.regexp.replace.js","core-js/modules/es6.regexp.split.js":"../../node_modules/core-js/modules/es6.regexp.split.js","core-js/modules/es6.regexp.search.js":"../../node_modules/core-js/modules/es6.regexp.search.js","core-js/modules/es6.regexp.to-string.js":"../../node_modules/core-js/modules/es6.regexp.to-string.js","core-js/modules/es6.set.js":"../../node_modules/core-js/modules/es6.set.js","core-js/modules/es6.symbol.js":"../../node_modules/core-js/modules/es6.symbol.js","core-js/modules/es7.symbol.async-iterator.js":"../../node_modules/core-js/modules/es7.symbol.async-iterator.js","core-js/modules/es6.string.anchor.js":"../../node_modules/core-js/modules/es6.string.anchor.js","core-js/modules/es6.string.big.js":"../../node_modules/core-js/modules/es6.string.big.js","core-js/modules/es6.string.blink.js":"../../node_modules/core-js/modules/es6.string.blink.js","core-js/modules/es6.string.bold.js":"../../node_modules/core-js/modules/es6.string.bold.js","core-js/modules/es6.string.code-point-at.js":"../../node_modules/core-js/modules/es6.string.code-point-at.js","core-js/modules/es6.string.ends-with.js":"../../node_modules/core-js/modules/es6.string.ends-with.js","core-js/modules/es6.string.fixed.js":"../../node_modules/core-js/modules/es6.string.fixed.js","core-js/modules/es6.string.fontcolor.js":"../../node_modules/core-js/modules/es6.string.fontcolor.js","core-js/modules/es6.string.fontsize.js":"../../node_modules/core-js/modules/es6.string.fontsize.js","core-js/modules/es6.string.from-code-point.js":"../../node_modules/core-js/modules/es6.string.from-code-point.js","core-js/modules/es6.string.includes.js":"../../node_modules/core-js/modules/es6.string.includes.js","core-js/modules/es6.string.italics.js":"../../node_modules/core-js/modules/es6.string.italics.js","core-js/modules/es6.string.iterator.js":"../../node_modules/core-js/modules/es6.string.iterator.js","core-js/modules/es6.string.link.js":"../../node_modules/core-js/modules/es6.string.link.js","core-js/modules/es7.string.pad-start.js":"../../node_modules/core-js/modules/es7.string.pad-start.js","core-js/modules/es7.string.pad-end.js":"../../node_modules/core-js/modules/es7.string.pad-end.js","core-js/modules/es6.string.raw.js":"../../node_modules/core-js/modules/es6.string.raw.js","core-js/modules/es6.string.repeat.js":"../../node_modules/core-js/modules/es6.string.repeat.js","core-js/modules/es6.string.small.js":"../../node_modules/core-js/modules/es6.string.small.js","core-js/modules/es6.string.starts-with.js":"../../node_modules/core-js/modules/es6.string.starts-with.js","core-js/modules/es6.string.strike.js":"../../node_modules/core-js/modules/es6.string.strike.js","core-js/modules/es6.string.sub.js":"../../node_modules/core-js/modules/es6.string.sub.js","core-js/modules/es6.string.sup.js":"../../node_modules/core-js/modules/es6.string.sup.js","core-js/modules/es7.string.trim-left.js":"../../node_modules/core-js/modules/es7.string.trim-left.js","core-js/modules/es7.string.trim-right.js":"../../node_modules/core-js/modules/es7.string.trim-right.js","core-js/modules/es6.typed.array-buffer.js":"../../node_modules/core-js/modules/es6.typed.array-buffer.js","core-js/modules/es6.typed.int8-array.js":"../../node_modules/core-js/modules/es6.typed.int8-array.js","core-js/modules/es6.typed.uint8-array.js":"../../node_modules/core-js/modules/es6.typed.uint8-array.js","core-js/modules/es6.typed.uint8-clamped-array.js":"../../node_modules/core-js/modules/es6.typed.uint8-clamped-array.js","core-js/modules/es6.typed.int16-array.js":"../../node_modules/core-js/modules/es6.typed.int16-array.js","core-js/modules/es6.typed.uint16-array.js":"../../node_modules/core-js/modules/es6.typed.uint16-array.js","core-js/modules/es6.typed.int32-array.js":"../../node_modules/core-js/modules/es6.typed.int32-array.js","core-js/modules/es6.typed.uint32-array.js":"../../node_modules/core-js/modules/es6.typed.uint32-array.js","core-js/modules/es6.typed.float32-array.js":"../../node_modules/core-js/modules/es6.typed.float32-array.js","core-js/modules/es6.typed.float64-array.js":"../../node_modules/core-js/modules/es6.typed.float64-array.js","core-js/modules/es6.weak-map.js":"../../node_modules/core-js/modules/es6.weak-map.js","core-js/modules/es6.weak-set.js":"../../node_modules/core-js/modules/es6.weak-set.js","core-js/modules/web.timers.js":"../../node_modules/core-js/modules/web.timers.js","core-js/modules/web.immediate.js":"../../node_modules/core-js/modules/web.immediate.js","core-js/modules/web.dom.iterable.js":"../../node_modules/core-js/modules/web.dom.iterable.js","regenerator-runtime/runtime.js":"../../node_modules/regenerator-runtime/runtime.js","./functions":"functions.js","axios":"../../node_modules/axios/index.js","./alerts":"alerts.js"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
@@ -12573,7 +12650,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64484" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53993" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

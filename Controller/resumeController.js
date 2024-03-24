@@ -14,7 +14,7 @@ const generatePdf = (user) => {
 
 
 
-  let html;
+  let htmlt;
 
 
 
@@ -23,69 +23,90 @@ const generatePdf = (user) => {
   let templates = JSON.parse(data)
 
   // console.log(templates[0].data);
-  html = templates[3].data;
-  let height = templates[3].height
-  let width = templates[3].width
+  htmlt = templates[0].data;
+  let height = templates[0].height
+  let width = templates[0].width;
+  let base64Data;
+  const filePath = `${__dirname}\\..\\Public\\user\\${user.userName}-${user.mobile}-cover.jpg`; // Update with the actual file path
+  fs.readFile(filePath, (err, data) => {
+    console.log("*****CAMEEEEE*******");
+    if (err) {
+      console.error('Error reading file:', err);
+      return;
+    }
 
-  var options = {
-    format: "A4",
-    // orientation: "vartical",
-    height,
-    width,
-    border: "",
-    header: {
-      height: "2mm",
+    base64Data = Buffer.from(data).toString('base64')
 
-    },
-    footer: {
-      height: "3mm",
-      contents: {
+    base64Data = 'data:image/jpeg;base64,' + base64Data
 
+
+    htmlt = htmlt.replace('<baseImage>', base64Data);
+    var options = {
+      format: "A4",
+      // orientation: "vartical",
+      height,
+      width,
+      border: "",
+      header: {
+        height: "2mm",
+
+      },
+      footer: {
+        height: "3mm",
+        contents: {
+
+        }
       }
-    }
-  };
-  console.log("the user is ", user);
-  var users = [
-    // user
-    {
-      name: user.userName,
-      address: user.address,
-      email: user.email,
-      mobile: user.mobile,
-      about: user.about,
-      skills: [...user.skills].join(" "),
-      education: { ...user.education },
-      experience: { ...user.experience[0] }
-    }
-  ];
-  console.log("user is ***", users);
-  var document = {
-    html: html,
-    data: {
-      users: users,
-    },
-    path: `./Public/files/${user._id}-output.pdf`,
-    type: "",
-  };
+    };
+    console.log("the user is ", user);
+    var users = [
+      // user
+      {
+        name: user.userName,
+        address: user.address,
+        email: user.email,
+        mobile: user.mobile,
+        about: user.about,
+        skills: [...user.skills].join(" "),
+        education: { ...user.education },
+        experience: { ...user.experience[0] }
+      }
+    ];
+    console.log("user is ***", users);
+    var document = {
+      html: htmlt,
+      data: {
+        users: users,
+      },
+      path: `./Public/files/${user._id}-output.pdf`,
+      type: "",
+    };
 
 
-  pdf
-    .create(document, options)
-    .then((res) => {
-      console.log(res);
-      // res.status(200).send({
-      //   status: true,
-      //   data: insertedFurther
-      // })
-    })
-    .catch((error) => {
-      // res.status(200).send({
-      //   status: true,
-      //   data: insertedFurther
-      // })
+    pdf
+      .create(document, options)
+      .then((res) => {
+        console.log(res);
+        // res.status(200).send({
+        //   status: true,
+        //   data: insertedFurther
+        // })
+      })
+      .catch((error) => {
+        // res.status(200).send({
+        //   status: true,
+        //   data: insertedFurther
+        // })
 
-      console.error(error);
-    });
+        console.error(error);
+      });
+
+
+
+
+  });
+
+
 };
 
 
@@ -108,13 +129,13 @@ exports.createResume = runAsync(async (req, res, next) => {
     urls,
 
   } = req.body
-  if (!about
+  // if (!about
 
-    , !hobbies
-  ) {
+  //   , !hobbies
+  // ) {
 
-    return next(new appError("please provide this information to add something more to resume ", 400))
-  }
+  //   return next(new appError("please provide this information to add something more to resume ", 400))
+  // }
   if (!req.user) {
 
     return next(new appError("please login for this functionality", 400))
@@ -190,5 +211,33 @@ exports.createResume = runAsync(async (req, res, next) => {
 
 })
 
+
+
+exports.updateProfileStatus = runAsync(async (req, res, next) => {
+
+  const resume = await Resume.findOne({ user: req.user._id })
+
+  if (!resume) {
+    return next(new appError("please complete the details page first ", 400));
+  }
+  console.log(resume);
+
+
+
+  await Resume.findByIdAndUpdate(resume._id, req.body, {
+    runValidators: true,
+    new: true
+  })
+
+  res.status(200).send({
+    status: true,
+    message: "profile updated successfully"
+  })
+
+
+
+
+
+})
 
 

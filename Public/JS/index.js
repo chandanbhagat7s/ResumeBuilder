@@ -1,13 +1,14 @@
 
 import '@babel/polyfill'
-import { ExtraInformationResumeVariable, addDetails, login, logoutUser, makeTemplate, signup } from './functions';
+import { ExtraInformationResumeVariable, addDetails, login, logoutUser, makeTemplate, signup, updateProfileStatus } from './functions';
 import axios from 'axios';
 import { showAlert } from './alerts';
+
 
 let addExp = document.getElementById("addExp")
 let expBox = document.getElementById("expBox")
 let logout = document.getElementById("logout")
-let extraInfo = document.getElementById("extraInfo")
+let profileUpdate = document.getElementById("profileUpdate")
 
 
 let logins = document.querySelector('#loginfrom');
@@ -17,6 +18,7 @@ let resumeForm = document.querySelector('#resumeForm');
 let templatesTrackBtn = document.querySelectorAll('.template-btn');
 
 if (templatesTrackBtn) {
+
     console.log(templatesTrackBtn);
     Array.from(templatesTrackBtn).map((el) => {
         console.log(el);
@@ -32,7 +34,6 @@ if (templatesTrackBtn) {
                 }, [2000])
             }
             let userData = await axios.get("http://127.0.0.1:3001/api/v1/user/getUser")
-            console.log("requested", userData);
             if (!userData) {
                 return showAlert("warning", "login or signup first for the functionality")
             }
@@ -48,13 +49,12 @@ if (templatesTrackBtn) {
                 return
 
             }
-            console.log("running");
             showAlert("success", "please wait REDIRCTING")
             setTimeout(() => {
                 location.assign('/others')
-            }, [1500])
+            }, [500])
 
-            ExtraInformationResumeVariable()
+            // ExtraInformationResumeVariable()
         })
 
 
@@ -62,6 +62,49 @@ if (templatesTrackBtn) {
 
     })
 }
+
+
+
+if (profileUpdate) {
+    // console.log(user);
+    profileUpdate.addEventListener("submit", (e) => {
+        showAlert("success", "Submitting your information")
+        e.preventDefault();
+        console.log(e);
+        let obj = {};
+        Array.from(e.target).map(el => {
+            if (el.id) {
+                obj[el.id] = el.value
+            }
+        })
+        console.log(obj);
+        obj.skills = obj.skill.split(",")
+        // obj.hobbies = obj.hobbies.split(",")
+        // obj.urls = obj.links.split(",")
+        obj.experience = {
+            first: {
+                about: obj.about1 || '',
+                org: obj.org1 || '',
+                fromto: obj.fromto1 || '',
+                exp: obj.exp1 || '',
+                position: obj.position1 || '',
+            }, second: {
+                org: obj.org2 || '',
+                about: obj.about2 || '',
+                fromto: obj.fromto2 || '',
+                exp: obj.exp2 || '',
+                position: obj.position2 || '',
+            }
+        }
+        console.log("obj is ", obj);
+        console.log("Called");
+        updateProfileStatus(obj)
+
+    })
+}
+
+
+
 
 if (ExtraInfo) {
     // console.log(user);
@@ -75,11 +118,12 @@ if (ExtraInfo) {
                 obj[el.id] = el.value
             }
         })
-        obj.skills = obj.skills.split(",")
-        obj.hobbies = obj.hobbies.split(",")
-        obj.urls = obj.links.split(",")
+        // obj.skills = obj.skills.split(",")
+        // obj.hobbies = obj.hobbies.split(",")
+        // obj.urls = obj.links.split(",")
         console.log("obj is ", obj);
-        console.log("Called"); ExtraInformationResumeVariable(obj);
+        console.log("Called");
+        obj.skills = obj.skill.split(','); ExtraInformationResumeVariable(obj);
     })
 }
 
@@ -150,9 +194,9 @@ if (resumeForm) {
                 passingYear: obj.passing12,
             },
             degree: {
-                collegeName: obj.collegeName,
-                universityName: obj.universityName,
-                passingYear: obj.yearOfPassingCollege,
+                collegeName: obj.collegeName || '',
+                universityName: obj.universityName || '',
+                passingYear: obj.yearOfPassingCollege || '',
             },
         }
         obj.skills = obj.skills.split(',')
@@ -194,18 +238,46 @@ if (signIn) {
     signIn.addEventListener('submit', e => {
         e.preventDefault();
         console.log("came signin");
+        console.log(e);
         let obj = {};
+
+
         Array.from(e.target).map(el => {
+            if (el.id == 'coverImage') {
+                obj[el.id] = el.files[0];
+                return;
+            }
             if (el.id) {
                 obj[el.id] = el.value
             }
         })
-        console.log(obj);
+
+        if (obj.password.length < 6) {
+            return showAlert('danger', "Password is to short ")
+
+        }
+
+        if (obj.password.length > 16) {
+            return showAlert('danger', "Password is to long ")
+
+        }
+        if (obj.password != obj.confirmPassword) {
+            return showAlert('danger', "please check password and cnfPassword!")
+        }
+
+
+        const form = new FormData()
+        for (const key in obj) {
+            const value = obj[key];
+            console.log(`Key: ${key}, Value: ${value}`, value);
+            form.append(key, obj[key])
+        }
+
         // console.log(email, password, cnfPassword, mobile);
         // if (!name || !email || !mobile || !password || !cnfPassword) {
         //     return alertt('danger', 'please provide all the details')
         // }
-        signup(obj.userName, obj.email, obj.password, obj.mobile, obj.confirmPassword);
+        signup(form);
     })
 
 
