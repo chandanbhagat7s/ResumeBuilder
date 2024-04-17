@@ -12134,15 +12134,18 @@ var addDetails = exports.addDetails = /*#__PURE__*/function () {
   };
 }();
 var ExtraInformationResumeVariable = exports.ExtraInformationResumeVariable = /*#__PURE__*/function () {
-  var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(data) {
+  var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(data, id) {
     var _res5;
     return _regeneratorRuntime().wrap(function _callee5$(_context5) {
       while (1) switch (_context5.prev = _context5.next) {
         case 0:
           _context5.prev = 0;
-          _context5.next = 3;
-          return _axios.default.post('http://127.0.0.1:3001/api/v1/resume/', _objectSpread({}, data));
-        case 3:
+          console.log("ID is **************", id);
+          _context5.next = 4;
+          return _axios.default.post('http://127.0.0.1:3001/api/v1/resume/', _objectSpread(_objectSpread({}, data), {}, {
+            id: JSON.parse(id)
+          }));
+        case 4:
           _res5 = _context5.sent;
           console.log(_res5);
           if (_res5.data.status) {
@@ -12151,20 +12154,20 @@ var ExtraInformationResumeVariable = exports.ExtraInformationResumeVariable = /*
               location.assign("/files/".concat(_res5.data.data._id, "-output.pdf"));
             }, 1500);
           }
-          _context5.next = 12;
+          _context5.next = 13;
           break;
-        case 8:
-          _context5.prev = 8;
+        case 9:
+          _context5.prev = 9;
           _context5.t0 = _context5["catch"](0);
           console.log(_context5.t0);
           (0, _alerts.showAlert)('warning', _context5.t0.response.data.msg);
-        case 12:
+        case 13:
         case "end":
           return _context5.stop();
       }
-    }, _callee5, null, [[0, 8]]);
+    }, _callee5, null, [[0, 9]]);
   }));
-  return function ExtraInformationResumeVariable(_x6) {
+  return function ExtraInformationResumeVariable(_x6, _x7) {
     return _ref5.apply(this, arguments);
   };
 }();
@@ -12200,7 +12203,7 @@ var signup = exports.signup = /*#__PURE__*/function () {
       }
     }, _callee6, null, [[0, 9]]);
   }));
-  return function signup(_x7) {
+  return function signup(_x8) {
     return _ref6.apply(this, arguments);
   };
 }();
@@ -12245,7 +12248,7 @@ var makeTemplate = exports.makeTemplate = /*#__PURE__*/function () {
       }
     }, _callee7, null, [[0, 8]]);
   }));
-  return function makeTemplate(_x8, _x9) {
+  return function makeTemplate(_x9, _x10) {
     return _ref7.apply(this, arguments);
   };
 }();
@@ -12399,6 +12402,8 @@ var ExtraInfo = document.querySelector('#ExtraInfo');
 var signIn = document.querySelector('#signinForm');
 var resumeForm = document.querySelector('#resumeForm');
 var templatesTrackBtn = document.querySelectorAll('.template-btn');
+var id;
+console.log("sotrange", localStorage.getItem("id"));
 if (templatesTrackBtn) {
   console.log(templatesTrackBtn);
   Array.from(templatesTrackBtn).map(function (el) {
@@ -12410,26 +12415,28 @@ if (templatesTrackBtn) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
               // take the user id
-              // console.log(el);
-              console.log(e.target.dataset);
+              console.log("setting id tp id is ", e.target.id);
+              localStorage.setItem("id", e.target.id);
+              id = e.target.id;
+              // console.log(e.target.dataset);
               if (!e.target.dataset.user) {
                 (0, _alerts.showAlert)("warning", "login first for the functionality");
                 setTimeout(function () {
                   location.assign('/login');
                 }, [2000]);
               }
-              _context.next = 4;
+              _context.next = 6;
               return _axios.default.get("http://127.0.0.1:3001/api/v1/user/getUser");
-            case 4:
+            case 6:
               userData = _context.sent;
               if (userData) {
-                _context.next = 7;
+                _context.next = 9;
                 break;
               }
               return _context.abrupt("return", (0, _alerts.showAlert)("warning", "login or signup first for the functionality"));
-            case 7:
+            case 9:
               if (userData.data.data.data) {
-                _context.next = 11;
+                _context.next = 13;
                 break;
               }
               (0, _alerts.showAlert)("info", "please complete the details");
@@ -12437,14 +12444,14 @@ if (templatesTrackBtn) {
                 location.assign('/completeDetails');
               }, [1500]);
               return _context.abrupt("return");
-            case 11:
+            case 13:
               (0, _alerts.showAlert)("success", "please wait REDIRCTING");
               setTimeout(function () {
                 location.assign('/others');
               }, [500]);
 
               // ExtraInformationResumeVariable()
-            case 13:
+            case 15:
             case "end":
               return _context.stop();
           }
@@ -12461,35 +12468,31 @@ if (profileUpdate) {
   profileUpdate.addEventListener("submit", function (e) {
     (0, _alerts.showAlert)("success", "Submitting your information");
     e.preventDefault();
-    console.log(e);
     var obj = {};
     Array.from(e.target).map(function (el) {
       if (el.id) {
         obj[el.id] = el.value;
       }
     });
-    console.log(obj);
     obj.skills = obj.skill.split(",");
     // obj.hobbies = obj.hobbies.split(",")
     // obj.urls = obj.links.split(",")
     obj.experience = {
       first: {
         about: obj.about1 || '',
-        org: obj.org1 || '',
+        org: obj.organization1 || '',
         fromto: obj.fromto1 || '',
         exp: obj.exp1 || '',
         position: obj.position1 || ''
       },
       second: {
-        org: obj.org2 || '',
+        org: obj.organization2 || '',
         about: obj.about2 || '',
         fromto: obj.fromto2 || '',
         exp: obj.exp2 || '',
         position: obj.position2 || ''
       }
     };
-    console.log("obj is ", obj);
-    console.log("Called");
     (0, _functions.updateProfileStatus)(obj);
   });
 }
@@ -12511,7 +12514,8 @@ if (ExtraInfo) {
     console.log("obj is ", obj);
     console.log("Called");
     obj.skills = obj.skill.split(',');
-    (0, _functions.ExtraInformationResumeVariable)(obj);
+    console.log("id in index is ", id);
+    (0, _functions.ExtraInformationResumeVariable)(obj, localStorage.getItem("id"));
   });
 }
 if (logout) {
@@ -12530,6 +12534,7 @@ if (resumeForm) {
   resumeForm.addEventListener("submit", function (e) {
     e.preventDefault();
     var obj = {};
+    console.log("e.targer", e.target);
     Array.from(e.target).map(function (el) {
       if (el.id) {
         obj[el.id] = el.value;
@@ -12538,13 +12543,14 @@ if (resumeForm) {
     obj.experience = {
       first: {
         about: obj.about || '',
-        org: obj.org || '',
+        org: obj.organization1 || '',
         fromto: obj.fromto || '',
         exp: obj.exp || '',
         position: obj.position || ''
-      },
+      }
+    }, {
       second: {
-        org: obj.org1 || '',
+        org: obj.organization2 || '',
         about: obj.about1 || '',
         fromto: obj.fromto1 || '',
         exp: obj.exp1 || '',
@@ -12569,7 +12575,6 @@ if (resumeForm) {
       }
     };
     obj.skills = obj.skills.split(',');
-    console.log(obj);
     (0, _functions.addDetails)(obj);
   });
 }
@@ -12650,7 +12655,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53993" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58193" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

@@ -7,7 +7,7 @@ const fs = require('fs');
 
 exports.addDetailse = runAsync(async (req, res, next) => {
     const { address, experience, education, skills } = req.body
-    console.log(req.user);
+    console.log("req body is", experience, req.body);
     if (!req.user) {
         return next(new appError("please Login for functionality ", 500));
 

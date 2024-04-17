@@ -17,6 +17,9 @@ let signIn = document.querySelector('#signinForm');
 let resumeForm = document.querySelector('#resumeForm');
 let templatesTrackBtn = document.querySelectorAll('.template-btn');
 
+let id;
+console.log("sotrange", localStorage.getItem("id"));
+
 if (templatesTrackBtn) {
 
     console.log(templatesTrackBtn);
@@ -24,8 +27,11 @@ if (templatesTrackBtn) {
         console.log(el);
         el.addEventListener("click", async (e) => {
             // take the user id
-            // console.log(el);
-            console.log(e.target.dataset);
+            console.log("setting id tp id is ", e.target.id);
+            localStorage.setItem("id", e.target.id)
+
+            id = e.target.id
+            // console.log(e.target.dataset);
             if (!e.target.dataset.user) {
 
                 showAlert("warning", "login first for the functionality")
@@ -70,34 +76,31 @@ if (profileUpdate) {
     profileUpdate.addEventListener("submit", (e) => {
         showAlert("success", "Submitting your information")
         e.preventDefault();
-        console.log(e);
         let obj = {};
         Array.from(e.target).map(el => {
             if (el.id) {
                 obj[el.id] = el.value
             }
         })
-        console.log(obj);
         obj.skills = obj.skill.split(",")
         // obj.hobbies = obj.hobbies.split(",")
         // obj.urls = obj.links.split(",")
         obj.experience = {
             first: {
                 about: obj.about1 || '',
-                org: obj.org1 || '',
+                org: obj.organization1 || '',
                 fromto: obj.fromto1 || '',
                 exp: obj.exp1 || '',
                 position: obj.position1 || '',
             }, second: {
-                org: obj.org2 || '',
+                org: obj.organization2 || '',
                 about: obj.about2 || '',
                 fromto: obj.fromto2 || '',
                 exp: obj.exp2 || '',
                 position: obj.position2 || '',
             }
         }
-        console.log("obj is ", obj);
-        console.log("Called");
+
         updateProfileStatus(obj)
 
     })
@@ -123,7 +126,10 @@ if (ExtraInfo) {
         // obj.urls = obj.links.split(",")
         console.log("obj is ", obj);
         console.log("Called");
-        obj.skills = obj.skill.split(','); ExtraInformationResumeVariable(obj);
+        obj.skills = obj.skill.split(',');
+        console.log("id in index is ", id);
+
+        ExtraInformationResumeVariable(obj, localStorage.getItem("id"));
     })
 }
 
@@ -162,26 +168,31 @@ if (resumeForm) {
     resumeForm.addEventListener("submit", (e) => {
         e.preventDefault()
         let obj = {};
+        console.log("e.targer", e.target);
         Array.from(e.target).map(el => {
             if (el.id) {
                 obj[el.id] = el.value
             }
         })
+
         obj.experience = {
             first: {
                 about: obj.about || '',
-                org: obj.org || '',
+                org: obj.organization1 || '',
                 fromto: obj.fromto || '',
                 exp: obj.exp || '',
                 position: obj.position || '',
-            }, second: {
-                org: obj.org1 || '',
+            }
+        }, {
+            second: {
+                org: obj.organization2 || '',
                 about: obj.about1 || '',
                 fromto: obj.fromto1 || '',
                 exp: obj.exp1 || '',
                 position: obj.position1 || '',
             }
         }
+
         obj.education = {
             class10: {
                 schoolName: obj.class10,
@@ -200,7 +211,6 @@ if (resumeForm) {
             },
         }
         obj.skills = obj.skills.split(',')
-        console.log(obj);
 
 
 

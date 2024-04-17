@@ -84,14 +84,15 @@ export const addDetails = async (data) => {
 
 
 
-export const ExtraInformationResumeVariable = async (data) => {
+export const ExtraInformationResumeVariable = async (data, id) => {
 
     try {
 
 
+        console.log("ID is **************", id);
 
 
-        const res = await axios.post('http://127.0.0.1:3001/api/v1/resume/', { ...data })
+        const res = await axios.post('http://127.0.0.1:3001/api/v1/resume/', { ...data, id: JSON.parse(id) })
         console.log(res);
         if (res.data.status) {
             showAlert("success", "Data is Saved ,Creating your resume ")

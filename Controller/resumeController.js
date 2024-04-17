@@ -9,10 +9,10 @@ var pdf = require("pdf-creator-node");
 var fs = require("fs");
 
 
-const generatePdf = (user) => {
+const generatePdf = (user, id) => {
 
 
-
+  console.log("DATA ***", user.experience);
 
   let htmlt;
 
@@ -22,10 +22,14 @@ const generatePdf = (user) => {
   // console.log(data[1].data);
   let templates = JSON.parse(data)
 
+  let t = templates.filter((el) => {
+    return el.id == id
+  })
+  console.log("SELECTED", t);
   // console.log(templates[0].data);
-  htmlt = templates[0].data;
-  let height = templates[0].height
-  let width = templates[0].width;
+  htmlt = t[0].data;
+  let height = t[0].height
+  let width = t[0].width;
   let base64Data;
   const filePath = `${__dirname}\\..\\Public\\user\\${user.userName}-${user.mobile}-cover.jpg`; // Update with the actual file path
   fs.readFile(filePath, (err, data) => {
@@ -127,8 +131,10 @@ exports.createResume = runAsync(async (req, res, next) => {
     hobbies,
     skills,
     urls,
+    id
 
   } = req.body
+  console.log("ID is **************", id);
   // if (!about
 
   //   , !hobbies
@@ -146,11 +152,8 @@ exports.createResume = runAsync(async (req, res, next) => {
     return next(new appError("please complete the details page first ", 400))
   }
 
-  console.log("user ***** is ", req.user._id);
   const belongs = await Resume.find({ user: req.user._id })
-  console.log("belongs", belongs);
   if (belongs.length) {
-    console.log("came inside", belongs);
     // console.log("id is ",belongs);
     const insertedFurther = await Resume.findByIdAndUpdate(belongs[0]._id, {
       about,
@@ -165,8 +168,8 @@ exports.createResume = runAsync(async (req, res, next) => {
     if (!insertedFurther) {
       return next(new appError("failed to store your data please try again", 500));
     }
-    belongs && generatePdf(insertedFurther)
-    console.log("ins", insertedFurther);
+    console.log("belongs", belongs[0].experience);
+    belongs && generatePdf(insertedFurther, id)
 
     res.status(200).send({
       status: true,
@@ -220,11 +223,11 @@ exports.updateProfileStatus = runAsync(async (req, res, next) => {
   if (!resume) {
     return next(new appError("please complete the details page first ", 400));
   }
-  console.log(resume);
+  console.log("body is", req.body.data.experience);
 
 
 
-  await Resume.findByIdAndUpdate(resume._id, req.body, {
+  await Resume.findByIdAndUpdate(resume._id, req.body.data, {
     runValidators: true,
     new: true
   })

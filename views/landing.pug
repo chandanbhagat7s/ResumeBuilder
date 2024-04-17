@@ -34,26 +34,40 @@ block content
                         </div>
                 <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-6 items-start lg:py-12 bg-gradient-to-t from-gray-300 to-gray-100 ease-in">
 
-                div(id='0', class="template-btn rounded-lg border bg-gray-400 text-black capitalize text-card-foreground shadow-sm cursor-pointer shadow-lg shadow-gray-500  m-auto rounded-lg hover:scale-105 hover:bg-black hover:text-white ease-in ",  data-v0-t="card",, data-user=`${user ? user._id : ''}`)
+                div(id='1', class="template-btn rounded-lg border bg-gray-400 text-black capitalize text-card-foreground shadow-sm cursor-pointer shadow-lg shadow-gray-500  m-auto rounded-lg hover:scale-105 hover:bg-black hover:text-white ease-in ",  data-v0-t="card",, data-user=`${user ? user._id : ''}`)
+                    div(id='1',  class="p-0" data-user=`${user ? user._id : ''}` )
+                        img(id='1' , src="/templates/simple.png" width="400" data-user=`${user ? user._id : ''}` height="225" alt="Image" class="aspect-16/9 object-cover rounded-lg")
+
+                    div(id='1' , class="flex items-center p-4 " data-user=`${user ? user._id : ''}`)
+                        p(id='1',  data-user=`${user ? user._id : ''}`  class="text-xl font-medium m-auto leading-none") Simple
+                
+                
+
+                
+                div(id='2',  class="template-btn rounded-lg border bg-gray-400 text-black capitalize text-card-foreground shadow-sm cursor-pointer shadow-lg shadow-gray-500   m-auto rounded-lg hover:scale-105 hover:bg-black hover:text-white ease-in " data-v0-t="card")
+                    div(id='2' , class="p-0" data-user=`${user ? user._id : ''}` )
+                        img(id='2' , src="/templates/imgType.png" width="400" data-user=`${user ? user._id : ''}` height="225" alt="Image" class="aspect-16/9 object-cover rounded-lg")
+
+                    div(id='2',  class="flex items-center p-4 " data-user=`${user ? user._id : ''}`)
+                        p( id='2', data-user=`${user ? user._id : ''}`  class="text-xl font-medium m-auto leading-none") Organized
+                div(id='3',  class="template-btn rounded-lg border bg-gray-400 text-black capitalize text-card-foreground shadow-sm cursor-pointer shadow-lg shadow-gray-500   m-auto rounded-lg hover:scale-105 hover:bg-black hover:text-white ease-in " data-v0-t="card")
                     div(class="p-0" data-user=`${user ? user._id : ''}` )
-                        img(src="/templates/simple.png" width="400" data-user=`${user ? user._id : ''}` height="225" alt="Image" class="aspect-16/9 object-cover rounded-lg")
+                        img(id='3' , src="/templates/standard.png" width="400" data-user=`${user ? user._id : ''}` height="225" alt="Image" class="aspect-16/9 object-cover rounded-lg")
 
-                    div(class="flex items-center p-4 " data-user=`${user ? user._id : ''}`)
-                        p(data-user=`${user ? user._id : ''}`  class="text-xl font-medium m-auto leading-none") Simple
-                
-                
+                    div(id='3',  class="flex items-center p-4 " data-user=`${user ? user._id : ''}`)
+                        p( id='3', data-user=`${user ? user._id : ''}`  class="text-xl font-medium m-auto leading-none") Standard
+                div(id='4',  class="template-btn rounded-lg border bg-gray-400 text-black capitalize text-card-foreground shadow-sm cursor-pointer shadow-lg shadow-gray-500   m-auto rounded-lg hover:scale-105 hover:bg-black hover:text-white ease-in " data-v0-t="card")
+                    div( id='4',  class="p-0" data-user=`${user ? user._id : ''}` )
+                        img( id='4',  src="/templates/simplestandard.png" width="400" data-user=`${user ? user._id : ''}` height="225" alt="Image" class="aspect-16/9 object-cover rounded-lg")
 
-                
-                div(id='0' class="template-btn rounded-lg border bg-gray-400 text-black capitalize text-card-foreground shadow-sm cursor-pointer shadow-lg shadow-gray-500   m-auto rounded-lg hover:scale-105 hover:bg-black hover:text-white ease-in " data-v0-t="card")
-                    div(class="p-0" data-user=`${user ? user._id : ''}` )
-                        img(src="/templates/imgType.png" width="400" data-user=`${user ? user._id : ''}` height="225" alt="Image" class="aspect-16/9 object-cover rounded-lg")
-
-                    div(class="flex items-center p-4 " data-user=`${user ? user._id : ''}`)
-                        p(data-user=`${user ? user._id : ''}`  class="text-xl font-medium m-auto leading-none") Organized
+                    div( id='4' , class="flex items-center p-4 " data-user=`${user ? user._id : ''}`)
+                        p(id='4' , data-user=`${user ? user._id : ''}`  class="text-xl font-medium m-auto leading-none") Simple Standard
                 
                 
                 
                 </div>
+
+
                 </section>
 
 
